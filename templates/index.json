@@ -1,5 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "index",
   "sections": {
     "main_wrapper": {
       "type": "cx-container",
@@ -8,11 +16,22 @@
         "remove_padding_desktop": false,
         "remove_padding_mobile": false,
         "margin_bottom": "40px",
-        "bg_color": "transparent"
+        "bg_color": "rgba(0,0,0,0)"
+      }
+    },
+    "cx_media_yyCYLD": {
+      "type": "cx-media",
+      "name": "CX Media",
+      "settings": {
+        "image_desktop": "shopify://shop_images/cafe.avif",
+        "image_mobile": "shopify://shop_images/cafe.avif",
+        "radius": 24,
+        "mb": "0px"
       }
     }
   },
   "order": [
-    "main_wrapper"
+    "main_wrapper",
+    "cx_media_yyCYLD"
   ]
 }
