@@ -1,11 +1,16 @@
 {%- comment -%}
-  CX Media Section - Clean Static Version (No Hover)
+  CX Media Section - Static Version with Link Support
 {%- endcomment -%}
 
 <div class="cx-media cx-media-{{ section.id }}" 
      style="margin-bottom: {{ section.settings.mb }};">
   
   <div class="cx-media-container">
+    {%- comment -%} Check if Link is provided {%- endcomment -%}
+    {% if section.settings.image_link != blank %}
+      <a href="{{ section.settings.image_link }}" class="cx-media-link">
+    {% endif %}
+
     {% if section.settings.image_desktop != blank %}
       <picture>
         {% if section.settings.image_mobile != blank %}
@@ -21,6 +26,10 @@
     {% else %}
       {{ 'lifestyle-1' | placeholder_svg_tag: 'cx-placeholder' }}
     {% endif %}
+
+    {% if section.settings.image_link != blank %}
+      </a>
+    {% endif %}
   </div>
 
 </div>
@@ -31,21 +40,22 @@
     overflow: hidden;
     padding: 0 15px;
   }
-
   .cx-media-{{ section.id }} .cx-media-container {
     border-radius: {{ section.settings.radius }}px;
     overflow: hidden;
     line-height: 0;
   }
-
+  .cx-media-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+  }
   .cx-media-img {
     width: 100%;
     height: auto;
     object-fit: cover;
     display: block;
-    /* Hover transitions removed */
   }
-
   .cx-placeholder {
     width: 100%;
     height: 400px;
@@ -62,6 +72,8 @@
     { "type": "image_picker", "id": "image_desktop", "label": "Image (Desktop)" },
     { "type": "header", "content": "Mobile Settings" },
     { "type": "image_picker", "id": "image_mobile", "label": "Image (Mobile)" },
+    { "type": "header", "content": "Interaction" },
+    { "type": "url", "id": "image_link", "label": "Image Link (Optional)" },
     { "type": "header", "content": "Layout & Style" },
     { "type": "range", "id": "radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner Roundness", "default": 0 },
     {
