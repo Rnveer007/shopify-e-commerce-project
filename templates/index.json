@@ -44,7 +44,7 @@
           "name": "CX Rich Text",
           "settings": {
             "align": "center",
-            "bg_color": "rgba(0,0,0,0)",
+            "bg_color": "#d2cccc",
             "bg_opacity": 1,
             "radius": 0,
             "pt_desktop": 20,
