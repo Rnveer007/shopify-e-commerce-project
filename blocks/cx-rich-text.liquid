@@ -14,8 +14,6 @@
   --pr-mobile: {{ block.settings.pr_mobile }}px;
   --mt-desktop: {{ block.settings.mt_desktop }}px;
   --mb-desktop: {{ block.settings.mb_desktop }}px;
-  --mt-mobile: {{ block.settings.mt_mobile }}px;
-  --mb-mobile: {{ block.settings.mb_mobile }}px;
   --radius: {{ block.settings.radius }}px;
   --align: {{ block.settings.align }};
   --bw-main: {{ block.settings.bw_main }}px;
@@ -63,32 +61,14 @@
     box-sizing: border-box !important;
     display: block !important;
   }
-
-  .cx-el-sub, .cx-el-h, .cx-el-p, .cx-el-p p {
-    display: block !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .cx-el-sub, .cx-el-h, .cx-el-p {
-    margin-top: var(--mt) !important;
-    margin-bottom: var(--mb) !important;
-    color: var(--c) !important;
-    background-color: var(--bg) !important;
-    border: var(--bw) solid var(--bc) !important;
-    font-size: var(--fs-desktop) !important;
-    line-height: var(--lh) !important;
-    box-sizing: border-box !important;
-  }
-
+  .cx-el-sub, .cx-el-h, .cx-el-p, .cx-el-p p { display: block !important; padding: 0 !important; margin: 0 !important; }
+  .cx-el-sub, .cx-el-h, .cx-el-p { margin-top: var(--mt) !important; margin-bottom: var(--mb) !important; color: var(--c) !important; background-color: var(--bg) !important; border: var(--bw) solid var(--bc) !important; font-size: var(--fs-desktop) !important; line-height: var(--lh) !important; box-sizing: border-box !important; }
   .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; }
 
   @media (max-width: 768px) {
     .cx-rt-{{ block.id }} {
       padding: var(--pt-mobile) var(--pr-mobile) var(--pb-mobile) var(--pl-mobile) !important;
-      margin: var(--mt-mobile) 0 var(--mb-mobile) 0 !important;
     }
-    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mobile) !important; }
   }
 </style>
 
@@ -104,33 +84,35 @@
     { "type": "range", "id": "bw_main", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_main", "label": "Border Color", "default": "#000" },
     
-    { "type": "header", "content": "MAIN BOX SPACING (DESKTOP)" },
-    { "type": "range", "id": "pt_desktop", "min": 0, "max": 120, "step": 2, "label": "Padding Top", "default": 0 },
-    { "type": "range", "id": "pb_desktop", "min": 0, "max": 120, "step": 2, "label": "Padding Bottom", "default": 0 },
-    { "type": "range", "id": "pl_desktop", "min": 0, "max": 200, "step": 5, "label": "Padding Left (Use for Left Align)", "default": 20 },
-    { "type": "range", "id": "pr_desktop", "min": 0, "max": 200, "step": 5, "label": "Padding Right (Use for Right Align)", "default": 20 },
-    { "type": "range", "id": "mt_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Top", "default": 0 },
-    { "type": "range", "id": "mb_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom", "default": 0 },
+    { "type": "header", "content": "BOX PADDING (DESKTOP)" },
+    { "type": "range", "id": "pt_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Top", "default": 20 },
+    { "type": "range", "id": "pb_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Bottom", "default": 20 },
+    { "type": "range", "id": "pl_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pr_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Right", "default": 20 },
 
-    { "type": "header", "content": "MAIN BOX SPACING (MOBILE)" },
-    { "type": "range", "id": "pt_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Top Mobile", "default": 0 },
-    { "type": "range", "id": "pb_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Bottom Mobile", "default": 0 },
-    { "type": "range", "id": "pl_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Left Mobile", "default": 15 },
-    { "type": "range", "id": "pr_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Right Mobile", "default": 15 },
+    { "type": "header", "content": "BOX PADDING (MOBILE)" },
+    { "type": "range", "id": "pt_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Top Mobile", "default": 15 },
+    { "type": "range", "id": "pb_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Bottom Mobile", "default": 15 },
+    { "type": "range", "id": "pl_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Left Mobile", "default": 15 },
+    { "type": "range", "id": "pr_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Right Mobile", "default": 15 },
 
-    { "type": "header", "content": "ELEMENTS: 1. SUBHEADING" },
+    { "type": "header", "content": "BOX MARGIN (DESKTOP)" },
+    { "type": "range", "id": "mt_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Top Desktop", "default": 0 },
+    { "type": "range", "id": "mb_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom Desktop", "default": 0 },
+
+    { "type": "header", "content": "1. SUBHEADING" },
     { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
-    { "type": "color", "id": "c_sub", "label": "Color", "default": "#666" },
+    { "type": "color", "id": "c_sub", "label": "Color", "default": "#EB1A1A" },
     { "type": "color", "id": "bg_sub", "label": "BG Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bw_sub", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_sub", "label": "Border Color", "default": "#000" },
-    { "type": "number", "id": "fs_sub_desktop", "label": "Font Size Desktop", "default": 16 },
-    { "type": "number", "id": "fs_sub_mobile", "label": "Font Size Mobile", "default": 14 },
+    { "type": "number", "id": "fs_sub_desktop", "label": "Font Size Desktop", "default": 32 },
+    { "type": "number", "id": "fs_sub_mobile", "label": "Font Size Mobile", "default": 12 },
     { "type": "text", "id": "lh_sub", "label": "Line Height", "default": "1.2" },
     { "type": "range", "id": "mt_sub", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_sub", "min": 0, "max": 50, "label": "Margin Bottom", "default": 10 },
 
-    { "type": "header", "content": "ELEMENTS: 2. HEADING" },
+    { "type": "header", "content": "2. HEADING" },
     { "type": "text", "id": "title", "label": "Text", "default": "Main Heading" },
     { "type": "color", "id": "c_h", "label": "Color", "default": "#000" },
     { "type": "color", "id": "bg_h", "label": "BG Color", "default": "rgba(0,0,0,0)" },
@@ -142,7 +124,7 @@
     { "type": "range", "id": "mt_h", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_h", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
 
-    { "type": "header", "content": "ELEMENTS: 3. PARAGRAPH" },
+    { "type": "header", "content": "3. PARAGRAPH" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Professional description for your brand.</p>" },
     { "type": "color", "id": "c_p", "label": "Color", "default": "#333" },
     { "type": "color", "id": "bg_p", "label": "BG Color", "default": "rgba(0,0,0,0)" },
@@ -154,7 +136,7 @@
     { "type": "range", "id": "mt_p", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_p", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
 
-    { "type": "header", "content": "ELEMENTS: 4. BUTTON" },
+    { "type": "header", "content": "4. BUTTON" },
     { "type": "text", "id": "btn_label", "label": "Label", "default": "Shop Now" },
     { "type": "url", "id": "btn_link", "label": "Link" },
     { "type": "color", "id": "bg_btn", "label": "BG Color", "default": "#000" },
