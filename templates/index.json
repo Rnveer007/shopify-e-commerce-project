@@ -20,7 +20,7 @@
             "image_mobile": "shopify://shop_images/Strip_banner_Subscription-M.avif",
             "image_link": "",
             "radius": 12,
-            "mb": "20px"
+            "mb": "0px"
           },
           "blocks": {}
         }
