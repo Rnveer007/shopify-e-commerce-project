@@ -1,127 +1,136 @@
-<div class="cx-rich-text cx-rt-{{ block.id }}" style="
-  --bg-color: {{ block.settings.bg_color }};
-  --align: {{ block.settings.align }};
-  --mb-dt: {{ block.settings.mb_dt }}px;
-  --mb-mb: {{ block.settings.mb_mb }}px;
-">
-  <div class="cx-rt-inner">
-    
-    {% if block.settings.subheading != blank %}
-      <p class="cx-rt-subheading" style="
-        --c-sub: {{ block.settings.c_sub }};
-        --fs-sub-dt: {{ block.settings.fs_sub_dt }}px;
-        --fs-sub-mb: {{ block.settings.fs_sub_mb }}px;
-      ">
-        {{ block.settings.subheading }}
-      </p>
-    {% endif %}
+<div class="cx-rt-block cx-rt-{{ block.id }}" style="background-color: {{ block.settings.bg_color }}; text-align: {{ block.settings.align }};">
+  
+  {%- comment -%} SUBHEADING {%- endcomment -%}
+  {% if block.settings.subheading != blank %}
+    <p class="cx-el-sub" style="
+      --c: {{ block.settings.c_sub }};
+      --fs-dt: {{ block.settings.fs_sub_dt }}px;
+      --fs-mb: {{ block.settings.fs_sub_mb }}px;
+      --lh: {{ block.settings.lh_sub }};
+      --pt: {{ block.settings.pt_sub }}px;
+      --pb: {{ block.settings.pb_sub }}px;
+      --mt: {{ block.settings.mt_sub }}px;
+      --mb: {{ block.settings.mb_sub }}px;
+      --bg: {{ block.settings.bg_sub }};
+    ">{{ block.settings.subheading }}</p>
+  {% endif %}
 
-    {% if block.settings.title != blank %}
-      <h2 class="cx-rt-title" style="
-        --c-h: {{ block.settings.c_h }};
-        --fs-h-dt: {{ block.settings.fs_h_dt }}px;
-        --fs-h-mb: {{ block.settings.fs_h_mb }}px;
-      ">
-        {{ block.settings.title }}
-      </h2>
-    {% endif %}
+  {%- comment -%} HEADING {%- endcomment -%}
+  {% if block.settings.title != blank %}
+    <h2 class="cx-el-h" style="
+      --c: {{ block.settings.c_h }};
+      --fs-dt: {{ block.settings.fs_h_dt }}px;
+      --fs-mb: {{ block.settings.fs_h_mb }}px;
+      --lh: {{ block.settings.lh_h }};
+      --pt: {{ block.settings.pt_h }}px;
+      --pb: {{ block.settings.pb_h }}px;
+      --mt: {{ block.settings.mt_h }}px;
+      --mb: {{ block.settings.mb_h }}px;
+      --bg: {{ block.settings.bg_h }};
+    ">{{ block.settings.title }}</h2>
+  {% endif %}
 
-    {% if block.settings.text != blank %}
-      <div class="cx-rt-desc" style="
-        --c-t: {{ block.settings.c_t }};
-        --fs-t-dt: {{ block.settings.fs_t_dt }}px;
-        --fs-t-mb: {{ block.settings.fs_t_mb }}px;
-      ">
-        {{ block.settings.text }}
-      </div>
-    {% endif %}
+  {%- comment -%} PARAGRAPH {%- endcomment -%}
+  {% if block.settings.text != blank %}
+    <div class="cx-el-p" style="
+      --c: {{ block.settings.c_p }};
+      --fs-dt: {{ block.settings.fs_p_dt }}px;
+      --fs-mb: {{ block.settings.fs_p_mb }}px;
+      --lh: {{ block.settings.lh_p }};
+      --pt: {{ block.settings.pt_p }}px;
+      --pb: {{ block.settings.pb_p }}px;
+      --mt: {{ block.settings.mt_p }}px;
+      --mb: {{ block.settings.mb_p }}px;
+      --bg: {{ block.settings.bg_p }};
+    ">{{ block.settings.text }}</div>
+  {% endif %}
 
-    {% if block.settings.btn_label != blank %}
-      <a href="{{ block.settings.btn_link }}" class="cx-btn">
-        {{ block.settings.btn_label }}
-      </a>
-    {% endif %}
-    
-  </div>
+  {%- comment -%} BUTTON {%- endcomment -%}
+  {% if block.settings.btn_label != blank %}
+    <div style="padding-top: {{ block.settings.pt_btn }}px; padding-bottom: {{ block.settings.pb_btn }}px; margin-top: {{ block.settings.mt_btn }}px; margin-bottom: {{ block.settings.mb_btn }}px;">
+      <a href="{{ block.settings.btn_link }}" class="cx-el-btn" style="
+        background: {{ block.settings.bg_btn }};
+        color: {{ block.settings.c_btn }};
+        font-size: {{ block.settings.fs_btn }}px;
+        padding: 12px 30px;
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+      ">{{ block.settings.btn_label }}</a>
+    </div>
+  {% endif %}
+
 </div>
 
 <style>
-  .cx-rt-{{ block.id }} {
-    background-color: var(--bg-color);
-    text-align: var(--align);
-    margin-bottom: var(--mb-dt);
+  .cx-rt-block { width: 100%; box-sizing: border-box; }
+  .cx-el-sub, .cx-el-h, .cx-el-p {
+    display: block; margin: 0; 
+    color: var(--c); background-color: var(--bg);
+    padding-top: var(--pt); padding-bottom: var(--pb);
+    margin-top: var(--mt); margin-bottom: var(--mb);
+    line-height: var(--lh); font-size: var(--fs-dt);
   }
-  .cx-rt-subheading {
-    color: var(--c-sub);
-    font-size: var(--fs-sub-dt);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-  }
-  .cx-rt-title {
-    color: var(--c-h);
-    font-size: var(--fs-h-dt);
-    margin: 0 0 15px 0;
-    line-height: 1.2;
-  }
-  .cx-rt-desc {
-    color: var(--c-t);
-    font-size: var(--fs-t-dt);
-    line-height: 1.6;
-  }
-  .cx-btn {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 30px;
-    background: {{ block.settings.c_btn_bg }};
-    color: {{ block.settings.c_btn_t }};
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: opacity 0.3s;
-  }
-  .cx-btn:hover { opacity: 0.8; }
-
   @media (max-width: 768px) {
-    .cx-rt-{{ block.id }} { margin-bottom: var(--mb-mb); }
-    .cx-rt-subheading { font-size: var(--fs-sub-mb); }
-    .cx-rt-title { font-size: var(--fs-h-mb); }
-    .cx-rt-desc { font-size: var(--fs-t-mb); }
+    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mb); }
   }
 </style>
 
 {% schema %}
 {
-  "name": "CX Rich Text",
+  "name": "CX Rich Text Pro",
   "settings": [
-    { "type": "header", "content": "Content" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "New Collection" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Elevate Your Brand" },
-    { "type": "richtext", "id": "text", "label": "Description", "default": "<p>Professional code for professional brands.</p>" },
-    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
-    { "type": "url", "id": "btn_link", "label": "Button Link" },
-    { "type": "select", "id": "align", "label": "Alignment", "options": [
-        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }
-      ], "default": "center" },
-    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "c_sub", "label": "Subheading Color", "default": "#666666" },
-    { "type": "color", "id": "c_h", "label": "Heading Color", "default": "#121212" },
-    { "type": "color", "id": "c_t", "label": "Text Color", "default": "#444444" },
-    { "type": "color", "id": "c_btn_bg", "label": "Button Background", "default": "#000000" },
-    { "type": "color", "id": "c_btn_t", "label": "Button Text", "default": "#ffffff" },
-    { "type": "header", "content": "Desktop Typography" },
-    { "type": "range", "id": "fs_sub_dt", "min": 10, "max": 40, "step": 1, "unit": "px", "label": "Subheading Size", "default": 14 },
-    { "type": "range", "id": "fs_h_dt", "min": 20, "max": 100, "step": 2, "unit": "px", "label": "Heading Size", "default": 48 },
-    { "type": "range", "id": "fs_t_dt", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Text Size", "default": 18 },
-    { "type": "range", "id": "mb_dt", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Margin Bottom", "default": 40 },
-    { "type": "header", "content": "Mobile Typography" },
-    { "type": "range", "id": "fs_sub_mb", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Subheading Size (Mobile)", "default": 12 },
-    { "type": "range", "id": "fs_h_mb", "min": 18, "max": 60, "step": 2, "unit": "px", "label": "Heading Size (Mobile)", "default": 32 },
-    { "type": "range", "id": "fs_t_mb", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Text Size (Mobile)", "default": 16 },
-    { "type": "range", "id": "mb_mb", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Margin Bottom (Mobile)", "default": 32 }
+    { "type": "select", "id": "align", "label": "Text Align", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "color", "id": "bg_color", "label": "Block Background", "default": "transparent" },
+    
+    { "type": "header", "content": "1. SUBHEADING" },
+    { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
+    { "type": "color", "id": "c_sub", "label": "Color", "default": "#666" },
+    { "type": "color", "id": "bg_sub", "label": "BG Color", "default": "transparent" },
+    { "type": "number", "id": "fs_sub_dt", "label": "Font Size DT", "default": 16 },
+    { "type": "number", "id": "fs_sub_mb", "label": "Font Size MB", "default": 14 },
+    { "type": "text", "id": "lh_sub", "label": "Line Height", "default": "1.2" },
+    { "type": "range", "id": "mt_sub", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
+    { "type": "range", "id": "mb_sub", "min": 0, "max": 50, "label": "Margin Bottom", "default": 10 },
+    { "type": "range", "id": "pt_sub", "min": 0, "max": 50, "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pb_sub", "min": 0, "max": 50, "label": "Padding Bottom", "default": 0 },
+
+    { "type": "header", "content": "2. HEADING" },
+    { "type": "text", "id": "title", "label": "Text", "default": "Main Heading" },
+    { "type": "color", "id": "c_h", "label": "Color", "default": "#000" },
+    { "type": "color", "id": "bg_h", "label": "BG Color", "default": "transparent" },
+    { "type": "number", "id": "fs_h_dt", "label": "Font Size DT", "default": 40 },
+    { "type": "number", "id": "fs_h_mb", "label": "Font Size MB", "default": 30 },
+    { "type": "text", "id": "lh_h", "label": "Line Height", "default": "1.1" },
+    { "type": "range", "id": "mt_h", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
+    { "type": "range", "id": "mb_h", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
+    { "type": "range", "id": "pt_h", "min": 0, "max": 50, "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pb_h", "min": 0, "max": 50, "label": "Padding Bottom", "default": 0 },
+
+    { "type": "header", "content": "3. PARAGRAPH" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Your description goes here.</p>" },
+    { "type": "color", "id": "c_p", "label": "Color", "default": "#333" },
+    { "type": "color", "id": "bg_p", "label": "BG Color", "default": "transparent" },
+    { "type": "number", "id": "fs_p_dt", "label": "Font Size DT", "default": 18 },
+    { "type": "number", "id": "fs_p_mb", "label": "Font Size MB", "default": 16 },
+    { "type": "text", "id": "lh_p", "label": "Line Height", "default": "1.6" },
+    { "type": "range", "id": "mt_p", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
+    { "type": "range", "id": "mb_p", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
+    { "type": "range", "id": "pt_p", "min": 0, "max": 50, "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pb_p", "min": 0, "max": 50, "label": "Padding Bottom", "default": 0 },
+
+    { "type": "header", "content": "4. BUTTON" },
+    { "type": "text", "id": "btn_label", "label": "Label", "default": "Click Here" },
+    { "type": "url", "id": "btn_link", "label": "Link" },
+    { "type": "color", "id": "bg_btn", "label": "BG Color", "default": "#000" },
+    { "type": "color", "id": "c_btn", "label": "Text Color", "default": "#fff" },
+    { "type": "number", "id": "fs_btn", "label": "Font Size", "default": 16 },
+    { "type": "range", "id": "mt_btn", "min": 0, "max": 50, "label": "Margin Top", "default": 10 },
+    { "type": "range", "id": "mb_btn", "min": 0, "max": 50, "label": "Margin Bottom", "default": 0 },
+    { "type": "range", "id": "pt_btn", "min": 0, "max": 50, "label": "Space Above", "default": 0 },
+    { "type": "range", "id": "pb_btn", "min": 0, "max": 50, "label": "Space Below", "default": 0 }
   ],
-  "presets": [{ "name": "CX Rich Text" }]
+  "presets": [{ "name": "CX Rich Text Pro" }]
 }
 {% endschema %}
