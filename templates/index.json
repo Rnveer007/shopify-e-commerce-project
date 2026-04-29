@@ -11,22 +11,29 @@
   "sections": {
     "main_wrapper": {
       "type": "cx-container",
+      "blocks": {
+        "cx_media_V3UyGC": {
+          "type": "cx-media",
+          "name": "CX Media Card",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Strip_banner_Subscription-D.avif",
+            "image_mobile": "shopify://shop_images/Strip_banner_Subscription-M.avif",
+            "image_link": "",
+            "radius": 12,
+            "mb": "20px"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "cx_media_V3UyGC"
+      ],
       "settings": {
         "no_gutter": true,
         "remove_padding_desktop": true,
         "remove_padding_mobile": true,
-        "margin_bottom": "40px",
+        "margin_bottom": "0px",
         "bg_color": "rgba(0,0,0,0)"
-      }
-    },
-    "cx_media_yyCYLD": {
-      "type": "cx-media",
-      "name": "CX Media",
-      "settings": {
-        "image_desktop": "shopify://shop_images/Strip_banner_Subscription-D.avif",
-        "image_mobile": "shopify://shop_images/Strip_banner_Subscription-M.avif",
-        "radius": 0,
-        "mb": "0px"
       }
     },
     "cx_container_KWzqXT": {
@@ -96,7 +103,6 @@
   },
   "order": [
     "main_wrapper",
-    "cx_media_yyCYLD",
     "cx_container_KWzqXT"
   ]
 }
