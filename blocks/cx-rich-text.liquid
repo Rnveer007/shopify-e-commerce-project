@@ -1,0 +1,39 @@
+<div class="cx-rich-text cx-rt-{{ block.id }}" style="text-align: {{ block.settings.align }}; margin-bottom: {{ block.settings.mb }};">
+  {% if block.settings.title != blank %}
+    <h2 class="cx-rt-title" style="font-size: {{ block.settings.fs_h }}px; color: {{ block.settings.c_h }};">
+      {{ block.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% if block.settings.text != blank %}
+    <div class="cx-rt-desc" style="font-size: {{ block.settings.fs_t }}px; color: {{ block.settings.c_t }}; margin-top: 15px;">
+      {{ block.settings.text }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.btn_label != blank %}
+    <a href="{{ block.settings.btn_link }}" class="cx-btn" style="margin-top: 25px; display: inline-block; padding: 12px 30px; background: {{ block.settings.c_btn_bg }}; color: {{ block.settings.c_btn_t }}; text-decoration: none; border-radius: 4px; font-weight: bold;">
+      {{ block.settings.btn_label }}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "CX Rich Text",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Elevate Your Brand" },
+    { "type": "richtext", "id": "text", "label": "Description", "default": "<p>Professional code for professional brands.</p>" },
+    { "type": "select", "id": "align", "label": "Alignment", "options": [
+        { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }
+      ], "default": "center" },
+    { "type": "header", "content": "Styling" },
+    { "type": "range", "id": "fs_h", "min": 20, "max": 80, "step": 2, "label": "Heading Size", "default": 40 },
+    { "type": "color", "id": "c_h", "label": "Heading Color", "default": "#121212" },
+    { "type": "color", "id": "c_btn_bg", "label": "Button Color", "default": "#000000" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" }
+  ],
+  "presets": [{ "name": "CX Rich Text" }]
+}
+{% endschema %}

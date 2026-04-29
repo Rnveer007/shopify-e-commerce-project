@@ -1,0 +1,69 @@
+<div class="cx-block-media cx-media-{{ block.id }}" style="margin-bottom: {{ block.settings.mb }};">
+  
+  <div class="cx-media-inner" style="border-radius: {{ block.settings.radius }}px;">
+    {% if block.settings.image_desktop != blank %}
+      <picture>
+        {% if block.settings.image_mobile != blank %}
+          <source media="(max-width: 767px)" srcset="{{ block.settings.image_mobile | image_url: width: 800 }}">
+        {% endif %}
+        <img 
+          src="{{ block.settings.image_desktop | image_url: width: 2000 }}" 
+          alt="{{ block.settings.image_desktop.alt }}"
+          loading="lazy"
+          class="cx-media-img"
+        >
+      </picture>
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'cx-placeholder' }}
+    {% endif %}
+  </div>
+
+</div>
+
+<style>
+  .cx-media-{{ block.id }} .cx-media-inner {
+    overflow: hidden;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .cx-media-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    /* No transitions or transforms here - Pure Static */
+  }
+
+  .cx-placeholder { 
+    background: #eee; 
+    width: 100%; 
+    height: 300px; 
+  }
+</style>
+
+{% schema %}
+{
+  "name": "CX Media Card",
+  "settings": [
+    { "type": "image_picker", "id": "image_desktop", "label": "Image (Desktop)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (Mobile)" },
+    { "type": "range", "id": "radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner Roundness", "default": 12 },
+    {
+      "type": "select",
+      "id": "mb",
+      "label": "Margin Bottom",
+      "options": [
+        { "value": "0px", "label": "None" },
+        { "value": "20px", "label": "Small" },
+        { "value": "40px", "label": "Medium" },
+        { "value": "60px", "label": "Large" }
+      ],
+      "default": "20px"
+    }
+  ],
+  "presets": [
+    { "name": "CX Media Card" }
+  ]
+}
+{% endschema %}
