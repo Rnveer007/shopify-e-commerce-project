@@ -41,33 +41,104 @@
   </div>
 </div>
 
+<div class="cx-rt-wrapper cx-rt-{{ block.id }}" style="
+  {% if block.settings.bg_color.alpha != 0 %}
+    --bg-color: {{ block.settings.bg_color | color_modify: 'alpha', block.settings.bg_opacity }};
+  {% else %}
+    --bg-color: transparent;
+  {% endif %}
+  --pt-dt: {{ block.settings.pt_dt }}px;
+  --pb-dt: {{ block.settings.pb_dt }}px;
+  --pt-mb: {{ block.settings.pt_mb }}px;
+  --pb-mb: {{ block.settings.pb_mb }}px;
+  --mt-dt: {{ block.settings.mt_dt }}px;
+  --mb-dt: {{ block.settings.mb_dt }}px;
+  --mt-mb: {{ block.settings.mt_mb }}px;
+  --mb-mb: {{ block.settings.mb_mb }}px;
+  --radius: {{ block.settings.radius }}px;
+  --align: {{ block.settings.align }};
+">
+  
+  <div class="cx-rt-content">
+    {% if block.settings.subheading != blank %}
+      <p class="cx-el-sub" style="--c: {{ block.settings.c_sub }}; --fs-dt: {{ block.settings.fs_sub_dt }}px; --fs-mb: {{ block.settings.fs_sub_mb }}px; --lh: {{ block.settings.lh_sub }}; --mt: {{ block.settings.mt_sub }}px; --mb: {{ block.settings.mb_sub }}px; --bg: {{ block.settings.bg_sub }};">
+        {{ block.settings.subheading }}
+      </p>
+    {% endif %}
+
+    {% if block.settings.title != blank %}
+      <h2 class="cx-el-h" style="--c: {{ block.settings.c_h }}; --fs-dt: {{ block.settings.fs_h_dt }}px; --fs-mb: {{ block.settings.fs_h_mb }}px; --lh: {{ block.settings.lh_h }}; --mt: {{ block.settings.mt_h }}px; --mb: {{ block.settings.mb_h }}px; --bg: {{ block.settings.bg_h }};">
+        {{ block.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if block.settings.text != blank %}
+      <div class="cx-el-p" style="--c: {{ block.settings.c_p }}; --fs-dt: {{ block.settings.fs_p_dt }}px; --fs-mb: {{ block.settings.fs_p_mb }}px; --lh: {{ block.settings.lh_p }}; --mt: {{ block.settings.mt_p }}px; --mb: {{ block.settings.mb_p }}px; --bg: {{ block.settings.bg_p }};">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.btn_label != blank %}
+      <div class="cx-btn-wrapper" style="--mt: {{ block.settings.mt_btn }}px; --mb: {{ block.settings.mb_btn }}px;">
+        <a href="{{ block.settings.btn_link }}" class="cx-el-btn" style="background: {{ block.settings.bg_btn }}; color: {{ block.settings.c_btn }}; font-size: {{ block.settings.fs_btn }}px;">
+          {{ block.settings.btn_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 <style>
+  /* Wrapper Reset */
   .cx-rt-{{ block.id }} {
-    background-color: var(--bg-color);
-    text-align: var(--align);
-    border-radius: var(--radius);
-    padding-top: var(--pt-dt);
-    padding-bottom: var(--pb-dt);
-    margin-top: var(--mt-dt);
-    margin-bottom: var(--mb-dt);
+    background-color: var(--bg-color) !important;
+    text-align: var(--align) !important;
+    border-radius: var(--radius) !important;
+    padding-top: var(--pt-dt) !important;
+    padding-bottom: var(--pb-dt) !important;
+    margin-top: var(--mt-dt) !important;
+    margin-bottom: var(--mb-dt) !important;
     width: 100%;
     box-sizing: border-box;
-    padding-left: 20px; padding-right: 20px;
   }
+
+  /* Element Strict Spacing */
   .cx-el-sub, .cx-el-h, .cx-el-p {
-    display: block; margin: 0; color: var(--c); background-color: var(--bg);
-    margin-top: var(--mt); margin-bottom: var(--mb);
-    line-height: var(--lh); font-size: var(--fs-dt);
+    display: block !important;
+    margin: 0 !important; /* Pehle sab zero */
+    padding: 0 !important;
+    color: var(--c) !important;
+    background-color: var(--bg) !important;
+    margin-top: var(--mt) !important; /* Ab user wala apply hoga */
+    margin-bottom: var(--mb) !important;
+    line-height: var(--lh) !important;
+    font-size: var(--fs-dt) !important;
   }
+
+  .cx-btn-wrapper {
+    margin-top: var(--mt) !important;
+    margin-bottom: var(--mb) !important;
+    line-height: 0;
+  }
+
   .cx-el-btn {
-    display: inline-block; padding: 12px 30px; text-decoration: none; border-radius: 4px; font-weight: bold;
+    display: inline-block !important;
+    padding: 12px 30px !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
   }
+
   @media (max-width: 768px) {
     .cx-rt-{{ block.id }} {
-      padding-top: var(--pt-mb); padding-bottom: var(--pb-mb);
-      margin-top: var(--mt-mb); margin-bottom: var(--mb-mb);
+      padding-top: var(--pt-mb) !important;
+      padding-bottom: var(--pb-mb) !important;
+      margin-top: var(--mt-mb) !important;
+      margin-bottom: var(--mb-mb) !important;
     }
-    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mb); }
+    .cx-el-sub, .cx-el-h, .cx-el-p {
+      font-size: var(--fs-mb) !important;
+    }
   }
 </style>
 
