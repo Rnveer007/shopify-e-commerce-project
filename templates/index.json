@@ -12,9 +12,9 @@
     "main_wrapper": {
       "type": "cx-container",
       "settings": {
-        "no_gutter": false,
-        "remove_padding_desktop": false,
-        "remove_padding_mobile": false,
+        "no_gutter": true,
+        "remove_padding_desktop": true,
+        "remove_padding_mobile": true,
         "margin_bottom": "40px",
         "bg_color": "rgba(0,0,0,0)"
       }
@@ -23,9 +23,9 @@
       "type": "cx-media",
       "name": "CX Media",
       "settings": {
-        "image_desktop": "shopify://shop_images/cafe.avif",
-        "image_mobile": "shopify://shop_images/cafe.avif",
-        "radius": 24,
+        "image_desktop": "shopify://shop_images/Strip_banner_Subscription-D.avif",
+        "image_mobile": "shopify://shop_images/Strip_banner_Subscription-M.avif",
+        "radius": 0,
         "mb": "0px"
       }
     },
