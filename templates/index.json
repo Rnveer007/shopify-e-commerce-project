@@ -1,0 +1,16 @@
+{
+  "name": "index",
+  "sections": {
+    "init_container": {
+      "type": "cx-container",
+      "settings": {
+        "no_gutter": false,
+        "pt": 60,
+        "pb": 60
+      }
+    }
+  },
+  "order": [
+    "init_container"
+  ]
+}

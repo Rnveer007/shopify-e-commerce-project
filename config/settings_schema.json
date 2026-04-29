@@ -1,0 +1,27 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "CX Professional Builder",
+    "theme_version": "1.0.0",
+    "theme_author": "Creative Experience",
+    "theme_documentation_url": "https://help.shopify.com",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Global Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Body Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Body Text",
+        "default": "#121212"
+      }
+    ]
+  }
+]
