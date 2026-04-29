@@ -94,9 +94,9 @@
       "name": "CX Container",
       "settings": {
         "no_gutter": false,
-        "remove_padding_desktop": false,
-        "remove_padding_mobile": false,
-        "margin_bottom": "40px",
+        "remove_padding_desktop": true,
+        "remove_padding_mobile": true,
+        "margin_bottom": "0px",
         "bg_color": "rgba(0,0,0,0)"
       }
     }
