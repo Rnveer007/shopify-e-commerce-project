@@ -1,141 +1,17 @@
-{%- comment -%}
-  CX Container - The Master Parent Wrapper
-  Controls: Width (1440px vs 1920px), Margins, and Background.
-{%- endcomment -%}
-
-<section id="cx-section-{{ section.id }}" class="cx-main-parent" 
-  style="
-    --pt: {{ section.settings.pt }}px;
-    --pb: {{ section.settings.pb }}px;
-    --mt: {{ section.settings.mt }}px;
-    --mb: {{ section.settings.mb }}px;
-    --bg-color: {{ section.settings.bg_color }};
-  ">
-  
-  <div class="cx-wrapper {% if section.settings.no_gutter %}cx-width-expanded{% else %}cx-width-default{% endif %}">
-    {%- comment -%} Isme hum baki components nest karenge {%- endcomment -%}
-    {% content_for 'blocks' %}
-  </div>
-
-</section>
-
-<style>
-  .cx-main-parent {
-    background-color: var(--bg-color);
-    padding-top: var(--pt);
-    padding-bottom: var(--pb);
-    margin-top: var(--mt);
-    margin-bottom: var(--mb);
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .cx-wrapper {
-    margin: 0 auto;
-    transition: max-width 0.4s ease-in-out;
-    padding: 0 20px; /* Safety padding for mobile */
-  }
-
-  .cx-width-default {
-    max-width: 1440px;
-  }
-
-  .cx-width-expanded {
-    max-width: 1920px;
-  }
-
-  @media (max-width: 768px) {
-    .cx-main-parent {
-      padding-top: calc(var(--pt) / 1.5);
-      padding-bottom: calc(var(--pb) / 1.5);
-    }
-  }
-</style>
-
-{% schema %}
 {
-  "name": "CX Container",
-  "tag": "section",
-  "class": "cx-parent-section",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Container Width"
-    },
-    {
-      "type": "checkbox",
-      "id": "no_gutter",
-      "label": "No Gutter (Expand to 1920px)",
-      "default": false,
-      "info": "Default is 1440px. Checking this expands it to 1920px."
-    },
-    {
-      "type": "header",
-      "content": "Section Spacing"
-    },
-    {
-      "type": "range",
-      "id": "mt",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Margin Top",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mb",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Margin Bottom",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "pt",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "pb",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Appearance"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "transparent"
+  "name": "index",
+  "sections": {
+    "main_wrapper": {
+      "type": "cx-container",
+      "settings": {
+        "no_gutter": false,
+        "margin_bottom": "40px",
+        "remove_padding_desktop": false,
+        "remove_padding_mobile": false
+      }
     }
-  ],
-  "blocks": [
-    {
-      "type": "@theme"
-    },
-    {
-      "type": "@app"
-    }
-  ],
-  "presets": [
-    {
-      "name": "CX Container"
-    }
+  },
+  "order": [
+    "main_wrapper"
   ]
 }
-{% endschema %}

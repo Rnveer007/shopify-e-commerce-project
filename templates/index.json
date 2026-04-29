@@ -5,8 +5,8 @@
       "type": "cx-container",
       "settings": {
         "no_gutter": false,
-        "pt": 60,
-        "pb": 60
+        "pt": 10,
+        "pb": 10
       }
     }
   },
