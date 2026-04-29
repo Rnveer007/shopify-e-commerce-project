@@ -4,20 +4,20 @@
   {% else %}
     --bg-color: transparent;
   {% endif %}
-  --pt-desktop: {{ block.settings.pt_desktop }}px;
-  --pb-desktop: {{ block.settings.pb_desktop }}px;
-  --pl-desktop: {{ block.settings.pl_desktop }}px;
-  --pr-desktop: {{ block.settings.pr_desktop }}px;
-  --pt-mobile: {{ block.settings.pt_mobile }}px;
-  --pb-mobile: {{ block.settings.pb_mobile }}px;
-  --pl-mobile: {{ block.settings.pl_mobile }}px;
-  --pr-mobile: {{ block.settings.pr_mobile }}px;
-  --mt-desktop: {{ block.settings.mt_desktop }}px;
-  --mb-desktop: {{ block.settings.mb_desktop }}px;
-  --radius: {{ block.settings.radius }}px;
-  --align: {{ block.settings.align }};
-  --bw-main: {{ block.settings.bw_main }}px;
-  --bc-main: {{ block.settings.bc_main }};
+  --pt-desktop: {{ block.settings.main_pt_desktop }}px;
+  --pb-desktop: {{ block.settings.main_pb_desktop }}px;
+  --pl-desktop: {{ block.settings.main_pl_desktop }}px;
+  --pr-desktop: {{ block.settings.main_pr_desktop }}px;
+  --pt-mobile: {{ block.settings.main_pt_mobile }}px;
+  --pb-mobile: {{ block.settings.main_pb_mobile }}px;
+  --pl-mobile: {{ block.settings.main_pl_mobile }}px;
+  --pr-mobile: {{ block.settings.main_pr_mobile }}px;
+  --mt-desktop: {{ block.settings.main_mt_desktop }}px;
+  --mb-desktop: {{ block.settings.main_mb_desktop }}px;
+  --radius: {{ block.settings.main_radius }}px;
+  --align: {{ block.settings.main_align }};
+  --bw-main: {{ block.settings.main_bw }}px;
+  --bc-main: {{ block.settings.main_bc }};
 ">
   
   <div class="cx-rt-content">
@@ -76,34 +76,34 @@
 {
   "name": "CX Rich Text Pro",
   "settings": [
-    { "type": "header", "content": "MAIN BOX LAYOUT" },
-    { "type": "select", "id": "align", "label": "Horizontal Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "header", "content": "MAIN BOX SETTINGS" },
+    { "type": "select", "id": "main_align", "label": "Text Alignment", "options": [{"value":"left","label":"Left Alignment"},{"value":"center","label":"Center Alignment"},{"value":"right","label":"Right Alignment"}], "default": "center" },
     { "type": "color", "id": "bg_color", "label": "Background Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Background Opacity", "default": 0 },
-    { "type": "range", "id": "radius", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Corner Radius", "default": 0 },
-    { "type": "range", "id": "bw_main", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
-    { "type": "color", "id": "bc_main", "label": "Border Color", "default": "#000" },
+    { "type": "range", "id": "main_radius", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Corner Radius", "default": 0 },
+    { "type": "range", "id": "main_bw", "min": 0, "max": 10, "step": 1, "label": "Main Border Width", "default": 0 },
+    { "type": "color", "id": "main_bc", "label": "Main Border Color", "default": "#000000" },
     
-    { "type": "header", "content": "BOX PADDING (DESKTOP)" },
-    { "type": "range", "id": "pt_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Top", "default": 20 },
-    { "type": "range", "id": "pb_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Bottom", "default": 20 },
-    { "type": "range", "id": "pl_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Left", "default": 20 },
-    { "type": "range", "id": "pr_desktop", "min": 0, "max": 200, "step": 2, "label": "Padding Right", "default": 20 },
+    { "type": "header", "content": "PADDING - DESKTOP" },
+    { "type": "range", "id": "main_pt_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Top", "default": 20 },
+    { "type": "range", "id": "main_pb_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 20 },
+    { "type": "range", "id": "main_pl_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "main_pr_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
 
-    { "type": "header", "content": "BOX PADDING (MOBILE)" },
-    { "type": "range", "id": "pt_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Top Mobile", "default": 15 },
-    { "type": "range", "id": "pb_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Bottom Mobile", "default": 15 },
-    { "type": "range", "id": "pl_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Left Mobile", "default": 15 },
-    { "type": "range", "id": "pr_mobile", "min": 0, "max": 150, "step": 2, "label": "Padding Right Mobile", "default": 15 },
+    { "type": "header", "content": "PADDING - MOBILE" },
+    { "type": "range", "id": "main_pt_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Top Mobile", "default": 15 },
+    { "type": "range", "id": "main_pb_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Bottom Mobile", "default": 15 },
+    { "type": "range", "id": "main_pl_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Left Mobile", "default": 15 },
+    { "type": "range", "id": "main_pr_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Right Mobile", "default": 15 },
 
-    { "type": "header", "content": "BOX MARGIN (DESKTOP)" },
-    { "type": "range", "id": "mt_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Top Desktop", "default": 0 },
-    { "type": "range", "id": "mb_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom Desktop", "default": 0 },
+    { "type": "header", "content": "MARGIN - DESKTOP" },
+    { "type": "range", "id": "main_mt_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Top Desktop", "default": 0 },
+    { "type": "range", "id": "main_mb_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Bottom Desktop", "default": 0 },
 
     { "type": "header", "content": "1. SUBHEADING" },
-    { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
-    { "type": "color", "id": "c_sub", "label": "Color", "default": "#EB1A1A" },
-    { "type": "color", "id": "bg_sub", "label": "BG Color", "default": "rgba(0,0,0,0)" },
+    { "type": "text", "id": "subheading", "label": "Subheading Text", "default": "Subheading" },
+    { "type": "color", "id": "c_sub", "label": "Text Color", "default": "#EB1A1A" },
+    { "type": "color", "id": "bg_sub", "label": "Background Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bw_sub", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_sub", "label": "Border Color", "default": "#000" },
     { "type": "number", "id": "fs_sub_desktop", "label": "Font Size Desktop", "default": 32 },
@@ -113,9 +113,9 @@
     { "type": "range", "id": "mb_sub", "min": 0, "max": 50, "label": "Margin Bottom", "default": 10 },
 
     { "type": "header", "content": "2. HEADING" },
-    { "type": "text", "id": "title", "label": "Text", "default": "Main Heading" },
-    { "type": "color", "id": "c_h", "label": "Color", "default": "#000" },
-    { "type": "color", "id": "bg_h", "label": "BG Color", "default": "rgba(0,0,0,0)" },
+    { "type": "text", "id": "title", "label": "Heading Text", "default": "Main Heading" },
+    { "type": "color", "id": "c_h", "label": "Text Color", "default": "#000" },
+    { "type": "color", "id": "bg_h", "label": "Background Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bw_h", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_h", "label": "Border Color", "default": "#000" },
     { "type": "number", "id": "fs_h_desktop", "label": "Font Size Desktop", "default": 40 },
@@ -125,9 +125,9 @@
     { "type": "range", "id": "mb_h", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
 
     { "type": "header", "content": "3. PARAGRAPH" },
-    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Professional description for your brand.</p>" },
-    { "type": "color", "id": "c_p", "label": "Color", "default": "#333" },
-    { "type": "color", "id": "bg_p", "label": "BG Color", "default": "rgba(0,0,0,0)" },
+    { "type": "richtext", "id": "text", "label": "Paragraph Text", "default": "<p>Professional description for your brand.</p>" },
+    { "type": "color", "id": "c_p", "label": "Text Color", "default": "#333" },
+    { "type": "color", "id": "bg_p", "label": "Background Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bw_p", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_p", "label": "Border Color", "default": "#000" },
     { "type": "number", "id": "fs_p_desktop", "label": "Font Size Desktop", "default": 18 },
@@ -137,9 +137,9 @@
     { "type": "range", "id": "mb_p", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
 
     { "type": "header", "content": "4. BUTTON" },
-    { "type": "text", "id": "btn_label", "label": "Label", "default": "Shop Now" },
-    { "type": "url", "id": "btn_link", "label": "Link" },
-    { "type": "color", "id": "bg_btn", "label": "BG Color", "default": "#000" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+    { "type": "color", "id": "bg_btn", "label": "Background Color", "default": "#000" },
     { "type": "color", "id": "c_btn", "label": "Text Color", "default": "#fff" },
     { "type": "range", "id": "bw_btn", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_btn", "label": "Border Color", "default": "rgba(0,0,0,0)" },
