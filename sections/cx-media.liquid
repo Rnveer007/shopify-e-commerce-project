@@ -1,6 +1,5 @@
 {%- comment -%}
-  CX Media Section - High-performance Image Section
-  Supports: Desktop & Mobile separate images, Aspect Ratio, and Rounded Corners.
+  CX Media Section - Clean Static Version (No Hover)
 {%- endcomment -%}
 
 <div class="cx-media cx-media-{{ section.id }}" 
@@ -30,13 +29,13 @@
   .cx-media-{{ section.id }} {
     width: 100%;
     overflow: hidden;
-    padding: 0 15px; /* Default alignment with container padding */
+    padding: 0 15px;
   }
 
   .cx-media-{{ section.id }} .cx-media-container {
     border-radius: {{ section.settings.radius }}px;
     overflow: hidden;
-    line-height: 0; /* Extra space niche se hatane ke liye */
+    line-height: 0;
   }
 
   .cx-media-img {
@@ -44,11 +43,7 @@
     height: auto;
     object-fit: cover;
     display: block;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .cx-media-{{ section.id }}:hover .cx-media-img {
-    transform: scale(1.03);
+    /* Hover transitions removed */
   }
 
   .cx-placeholder {
@@ -63,40 +58,12 @@
   "name": "CX Media",
   "tag": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_desktop",
-      "label": "Image (Desktop)",
-      "info": "Recommended: 1920x1080px"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Image (Mobile)",
-      "info": "Recommended: 800x1000px"
-    },
-    {
-      "type": "header",
-      "content": "Layout & Style"
-    },
-    {
-      "type": "range",
-      "id": "radius",
-      "min": 0,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "label": "Corner Roundness",
-      "default": 0
-    },
+    { "type": "header", "content": "Desktop Settings" },
+    { "type": "image_picker", "id": "image_desktop", "label": "Image (Desktop)" },
+    { "type": "header", "content": "Mobile Settings" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (Mobile)" },
+    { "type": "header", "content": "Layout & Style" },
+    { "type": "range", "id": "radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner Roundness", "default": 0 },
     {
       "type": "select",
       "id": "mb",
@@ -105,16 +72,11 @@
         { "value": "0px", "label": "None" },
         { "value": "20px", "label": "Small" },
         { "value": "40px", "label": "Medium" },
-        { "value": "60px", "label": "Large" },
-        { "value": "80px", "label": "Larger" }
+        { "value": "60px", "label": "Large" }
       ],
       "default": "40px"
     }
   ],
-  "presets": [
-    {
-      "name": "CX Media"
-    }
-  ]
+  "presets": [{ "name": "CX Media" }]
 }
 {% endschema %}
