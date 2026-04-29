@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main_wrapper": {
@@ -39,36 +47,38 @@
             "bg_color": "rgba(0,0,0,0)",
             "bg_opacity": 1,
             "radius": 0,
-            "pt_dt": 0,
-            "pb_dt": 0,
-            "mt_dt": 0,
-            "mb_dt": 0,
-            "pt_mb": 0,
-            "pb_mb": 0,
+            "pt_desktop": 20,
+            "pb_desktop": 20,
+            "mt_desktop": 0,
+            "mb_desktop": 0,
+            "pt_mobile": 0,
+            "pb_mobile": 0,
+            "mt_mobile": 0,
+            "mb_mobile": 0,
             "subheading": "New Collection",
             "c_sub": "#eb1a1a",
             "bg_sub": "rgba(0,0,0,0)",
-            "fs_sub_dt": 32,
-            "fs_sub_mb": 12,
+            "fs_sub_desktop": 22,
+            "fs_sub_mobile": 16,
             "lh_sub": "1.2",
             "mt_sub": 0,
-            "mb_sub": 0,
+            "mb_sub": 10,
             "title": "Elevate Your Brand",
             "c_h": "#121212",
             "bg_h": "rgba(0,0,0,0)",
-            "fs_h_dt": 48,
-            "fs_h_mb": 32,
+            "fs_h_desktop": 40,
+            "fs_h_mobile": 30,
             "lh_h": "1.1",
             "mt_h": 0,
-            "mb_h": 0,
+            "mb_h": 10,
             "text": "<p>Professional code for professional brands.</p>",
             "c_p": "#333333",
             "bg_p": "rgba(0,0,0,0)",
-            "fs_p_dt": 18,
-            "fs_p_mb": 16,
+            "fs_p_desktop": 18,
+            "fs_p_mobile": 16,
             "lh_p": "1.6",
             "mt_p": 0,
-            "mb_p": 0,
+            "mb_p": 10,
             "btn_label": "Shop Now",
             "btn_link": "",
             "bg_btn": "#000000",
