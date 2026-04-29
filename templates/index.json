@@ -1,16 +1,17 @@
 {
   "name": "index",
   "sections": {
-    "init_container": {
+    "main_wrapper": {
       "type": "cx-container",
       "settings": {
         "no_gutter": false,
-        "pt": 10,
-        "pb": 10
+        "margin_bottom": "40px",
+        "remove_padding_desktop": false,
+        "remove_padding_mobile": false
       }
     }
   },
   "order": [
-    "init_container"
+    "main_wrapper"
   ]
 }
