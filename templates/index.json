@@ -32,7 +32,7 @@
         "no_gutter": true,
         "remove_padding_desktop": true,
         "remove_padding_mobile": true,
-        "margin_bottom": "0px",
+        "margin_bottom": "40px",
         "bg_color": "rgba(0,0,0,0)"
       }
     },
