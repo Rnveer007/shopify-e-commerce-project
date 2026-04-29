@@ -6,73 +6,44 @@
   {% endif %}
   --pt-desktop: {{ block.settings.pt_desktop }}px;
   --pb-desktop: {{ block.settings.pb_desktop }}px;
+  --pl-desktop: {{ block.settings.pl_desktop }}px;
+  --pr-desktop: {{ block.settings.pr_desktop }}px;
   --pt-mobile: {{ block.settings.pt_mobile }}px;
   --pb-mobile: {{ block.settings.pb_mobile }}px;
+  --pl-mobile: {{ block.settings.pl_mobile }}px;
+  --pr-mobile: {{ block.settings.pr_mobile }}px;
   --mt-desktop: {{ block.settings.mt_desktop }}px;
   --mb-desktop: {{ block.settings.mb_desktop }}px;
   --mt-mobile: {{ block.settings.mt_mobile }}px;
   --mb-mobile: {{ block.settings.mb_mobile }}px;
   --radius: {{ block.settings.radius }}px;
   --align: {{ block.settings.align }};
+  --bw-main: {{ block.settings.bw_main }}px;
+  --bc-main: {{ block.settings.bc_main }};
 ">
   
   <div class="cx-rt-content">
     {% if block.settings.subheading != blank %}
-      <p class="cx-el-sub" style="
-        --c: {{ block.settings.c_sub }}; 
-        --fs-desktop: {{ block.settings.fs_sub_desktop }}px; 
-        --fs-mobile: {{ block.settings.fs_sub_mobile }}px; 
-        --lh: {{ block.settings.lh_sub }}; 
-        --mt: {{ block.settings.mt_sub }}px; 
-        --mb: {{ block.settings.mb_sub }}px; 
-        --bg: {{ block.settings.bg_sub }};
-        --bw: {{ block.settings.bw_sub }}px;
-        --bc: {{ block.settings.bc_sub }};
-      ">
+      <p class="cx-el-sub" style="--c: {{ block.settings.c_sub }}; --fs-desktop: {{ block.settings.fs_sub_desktop }}px; --fs-mobile: {{ block.settings.fs_sub_mobile }}px; --lh: {{ block.settings.lh_sub }}; --mt: {{ block.settings.mt_sub }}px; --mb: {{ block.settings.mb_sub }}px; --bg: {{ block.settings.bg_sub }}; --bw: {{ block.settings.bw_sub }}px; --bc: {{ block.settings.bc_sub }};">
         {{ block.settings.subheading }}
       </p>
     {% endif %}
 
     {% if block.settings.title != blank %}
-      <h2 class="cx-el-h" style="
-        --c: {{ block.settings.c_h }}; 
-        --fs-desktop: {{ block.settings.fs_h_desktop }}px; 
-        --fs-mobile: {{ block.settings.fs_h_mobile }}px; 
-        --lh: {{ block.settings.lh_h }}; 
-        --mt: {{ block.settings.mt_h }}px; 
-        --mb: {{ block.settings.mb_h }}px; 
-        --bg: {{ block.settings.bg_h }};
-        --bw: {{ block.settings.bw_h }}px;
-        --bc: {{ block.settings.bc_h }};
-      ">
+      <h2 class="cx-el-h" style="--c: {{ block.settings.c_h }}; --fs-desktop: {{ block.settings.fs_h_desktop }}px; --fs-mobile: {{ block.settings.fs_h_mobile }}px; --lh: {{ block.settings.lh_h }}; --mt: {{ block.settings.mt_h }}px; --mb: {{ block.settings.mb_h }}px; --bg: {{ block.settings.bg_h }}; --bw: {{ block.settings.bw_h }}px; --bc: {{ block.settings.bc_h }};">
         {{ block.settings.title }}
       </h2>
     {% endif %}
 
     {% if block.settings.text != blank %}
-      <div class="cx-el-p" style="
-        --c: {{ block.settings.c_p }}; 
-        --fs-desktop: {{ block.settings.fs_p_desktop }}px; 
-        --fs-mobile: {{ block.settings.fs_p_mobile }}px; 
-        --lh: {{ block.settings.lh_p }}; 
-        --mt: {{ block.settings.mt_p }}px; 
-        --mb: {{ block.settings.mb_p }}px; 
-        --bg: {{ block.settings.bg_p }};
-        --bw: {{ block.settings.bw_p }}px;
-        --bc: {{ block.settings.bc_p }};
-      ">
+      <div class="cx-el-p" style="--c: {{ block.settings.c_p }}; --fs-desktop: {{ block.settings.fs_p_desktop }}px; --fs-mobile: {{ block.settings.fs_p_mobile }}px; --lh: {{ block.settings.lh_p }}; --mt: {{ block.settings.mt_p }}px; --mb: {{ block.settings.mb_p }}px; --bg: {{ block.settings.bg_p }}; --bw: {{ block.settings.bw_p }}px; --bc: {{ block.settings.bc_p }};">
         {{ block.settings.text }}
       </div>
     {% endif %}
 
     {% if block.settings.btn_label != blank %}
       <div class="cx-btn-wrap" style="--mt: {{ block.settings.mt_btn }}px; --mb: {{ block.settings.mb_btn }}px;">
-        <a href="{{ block.settings.btn_link }}" class="cx-el-btn" style="
-          background: {{ block.settings.bg_btn }}; 
-          color: {{ block.settings.c_btn }}; 
-          font-size: {{ block.settings.fs_btn }}px;
-          border: {{ block.settings.bw_btn }}px solid {{ block.settings.bc_btn }};
-        ">
+        <a href="{{ block.settings.btn_link }}" class="cx-el-btn" style="background: {{ block.settings.bg_btn }}; color: {{ block.settings.c_btn }}; font-size: {{ block.settings.fs_btn }}px; border: {{ block.settings.bw_btn }}px solid {{ block.settings.bc_btn }};">
           {{ block.settings.btn_label }}
         </a>
       </div>
@@ -85,7 +56,8 @@
     background-color: var(--bg-color) !important;
     text-align: var(--align) !important;
     border-radius: var(--radius) !important;
-    padding: var(--pt-desktop) 20px var(--pb-desktop) 20px !important;
+    border: var(--bw-main) solid var(--bc-main) !important;
+    padding: var(--pt-desktop) var(--pr-desktop) var(--pb-desktop) var(--pl-desktop) !important;
     margin: var(--mt-desktop) 0 var(--mb-desktop) 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -103,17 +75,19 @@
     margin-bottom: var(--mb) !important;
     color: var(--c) !important;
     background-color: var(--bg) !important;
-    border: var(--bw) solid var(--bc) !important; /* Border logic */
+    border: var(--bw) solid var(--bc) !important;
     font-size: var(--fs-desktop) !important;
     line-height: var(--lh) !important;
     box-sizing: border-box !important;
   }
 
-  .cx-btn-wrap { margin-top: var(--mt) !important; margin-bottom: var(--mb) !important; }
-  .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; box-sizing: border-box !important; }
+  .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; }
 
   @media (max-width: 768px) {
-    .cx-rt-{{ block.id }} { padding: var(--pt-mobile) 15px var(--pb-mobile) 15px !important; margin: var(--mt-mobile) 0 var(--mb-mobile) 0 !important; }
+    .cx-rt-{{ block.id }} {
+      padding: var(--pt-mobile) var(--pr-mobile) var(--pb-mobile) var(--pl-mobile) !important;
+      margin: var(--mt-mobile) 0 var(--mb-mobile) 0 !important;
+    }
     .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mobile) !important; }
   }
 </style>
@@ -127,17 +101,25 @@
     { "type": "color", "id": "bg_color", "label": "Box Background Color", "default": "rgba(0,0,0,0)" },
     { "type": "range", "id": "bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Background Opacity", "default": 0 },
     { "type": "range", "id": "radius", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Box Roundness", "default": 0 },
+    { "type": "range", "id": "bw_main", "min": 0, "max": 10, "step": 1, "label": "Box Border Width", "default": 0 },
+    { "type": "color", "id": "bc_main", "label": "Box Border Color", "default": "#000" },
+    
     { "type": "header", "content": "BOX SPACING (DESKTOP)" },
-    { "type": "range", "id": "pt_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Top Desktop", "default": 0 },
-    { "type": "range", "id": "pb_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Bottom Desktop", "default": 0 },
-    { "type": "range", "id": "mt_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Top Desktop", "default": 0 },
-    { "type": "range", "id": "mb_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom Desktop", "default": 0 },
+    { "type": "range", "id": "pt_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pb_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Bottom", "default": 0 },
+    { "type": "range", "id": "pl_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pr_desktop", "min": 0, "max": 100, "step": 2, "label": "Padding Right", "default": 20 },
+    { "type": "range", "id": "mt_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Top", "default": 0 },
+    { "type": "range", "id": "mb_desktop", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom", "default": 0 },
+
     { "type": "header", "content": "BOX SPACING (MOBILE)" },
     { "type": "range", "id": "pt_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Top Mobile", "default": 0 },
     { "type": "range", "id": "pb_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Bottom Mobile", "default": 0 },
+    { "type": "range", "id": "pl_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Left Mobile", "default": 15 },
+    { "type": "range", "id": "pr_mobile", "min": 0, "max": 100, "step": 2, "label": "Padding Right Mobile", "default": 15 },
     { "type": "range", "id": "mt_mobile", "min": 0, "max": 100, "step": 2, "label": "Margin Top Mobile", "default": 0 },
     { "type": "range", "id": "mb_mobile", "min": 0, "max": 100, "step": 2, "label": "Margin Bottom Mobile", "default": 0 },
-    
+
     { "type": "header", "content": "1. SUBHEADING" },
     { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
     { "type": "color", "id": "c_sub", "label": "Color", "default": "#666" },
