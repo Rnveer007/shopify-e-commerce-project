@@ -5,9 +5,10 @@
       "type": "cx-container",
       "settings": {
         "no_gutter": false,
-        "margin_bottom": "40px",
         "remove_padding_desktop": false,
-        "remove_padding_mobile": false
+        "remove_padding_mobile": false,
+        "margin_bottom": "40px",
+        "bg_color": "transparent"
       }
     }
   },
