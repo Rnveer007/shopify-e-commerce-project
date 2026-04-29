@@ -1,38 +1,126 @@
-<div class="cx-rich-text cx-rt-{{ block.id }}" style="text-align: {{ block.settings.align }}; margin-bottom: {{ block.settings.mb }};">
-  {% if block.settings.title != blank %}
-    <h2 class="cx-rt-title" style="font-size: {{ block.settings.fs_h }}px; color: {{ block.settings.c_h }};">
-      {{ block.settings.title }}
-    </h2>
-  {% endif %}
+<div class="cx-rich-text cx-rt-{{ block.id }}" style="
+  --bg-color: {{ block.settings.bg_color }};
+  --align: {{ block.settings.align }};
+  --mb-dt: {{ block.settings.mb_dt }}px;
+  --mb-mb: {{ block.settings.mb_mb }}px;
+">
+  <div class="cx-rt-inner">
+    
+    {% if block.settings.subheading != blank %}
+      <p class="cx-rt-subheading" style="
+        --c-sub: {{ block.settings.c_sub }};
+        --fs-sub-dt: {{ block.settings.fs_sub_dt }}px;
+        --fs-sub-mb: {{ block.settings.fs_sub_mb }}px;
+      ">
+        {{ block.settings.subheading }}
+      </p>
+    {% endif %}
 
-  {% if block.settings.text != blank %}
-    <div class="cx-rt-desc" style="font-size: {{ block.settings.fs_t }}px; color: {{ block.settings.c_t }}; margin-top: 15px;">
-      {{ block.settings.text }}
-    </div>
-  {% endif %}
+    {% if block.settings.title != blank %}
+      <h2 class="cx-rt-title" style="
+        --c-h: {{ block.settings.c_h }};
+        --fs-h-dt: {{ block.settings.fs_h_dt }}px;
+        --fs-h-mb: {{ block.settings.fs_h_mb }}px;
+      ">
+        {{ block.settings.title }}
+      </h2>
+    {% endif %}
 
-  {% if block.settings.btn_label != blank %}
-    <a href="{{ block.settings.btn_link }}" class="cx-btn" style="margin-top: 25px; display: inline-block; padding: 12px 30px; background: {{ block.settings.c_btn_bg }}; color: {{ block.settings.c_btn_t }}; text-decoration: none; border-radius: 4px; font-weight: bold;">
-      {{ block.settings.btn_label }}
-    </a>
-  {% endif %}
+    {% if block.settings.text != blank %}
+      <div class="cx-rt-desc" style="
+        --c-t: {{ block.settings.c_t }};
+        --fs-t-dt: {{ block.settings.fs_t_dt }}px;
+        --fs-t-mb: {{ block.settings.fs_t_mb }}px;
+      ">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.btn_label != blank %}
+      <a href="{{ block.settings.btn_link }}" class="cx-btn">
+        {{ block.settings.btn_label }}
+      </a>
+    {% endif %}
+    
+  </div>
 </div>
+
+<style>
+  .cx-rt-{{ block.id }} {
+    background-color: var(--bg-color);
+    text-align: var(--align);
+    margin-bottom: var(--mb-dt);
+  }
+  .cx-rt-subheading {
+    color: var(--c-sub);
+    font-size: var(--fs-sub-dt);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .cx-rt-title {
+    color: var(--c-h);
+    font-size: var(--fs-h-dt);
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+  .cx-rt-desc {
+    color: var(--c-t);
+    font-size: var(--fs-t-dt);
+    line-height: 1.6;
+  }
+  .cx-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: {{ block.settings.c_btn_bg }};
+    color: {{ block.settings.c_btn_t }};
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+  .cx-btn:hover { opacity: 0.8; }
+
+  @media (max-width: 768px) {
+    .cx-rt-{{ block.id }} { margin-bottom: var(--mb-mb); }
+    .cx-rt-subheading { font-size: var(--fs-sub-mb); }
+    .cx-rt-title { font-size: var(--fs-h-mb); }
+    .cx-rt-desc { font-size: var(--fs-t-mb); }
+  }
+</style>
 
 {% schema %}
 {
   "name": "CX Rich Text",
   "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "New Collection" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Elevate Your Brand" },
     { "type": "richtext", "id": "text", "label": "Description", "default": "<p>Professional code for professional brands.</p>" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
     { "type": "select", "id": "align", "label": "Alignment", "options": [
         { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }
       ], "default": "center" },
-    { "type": "header", "content": "Styling" },
-    { "type": "range", "id": "fs_h", "min": 20, "max": 80, "step": 2, "label": "Heading Size", "default": 40 },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "c_sub", "label": "Subheading Color", "default": "#666666" },
     { "type": "color", "id": "c_h", "label": "Heading Color", "default": "#121212" },
-    { "type": "color", "id": "c_btn_bg", "label": "Button Color", "default": "#000000" },
-    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
-    { "type": "url", "id": "btn_link", "label": "Button Link" }
+    { "type": "color", "id": "c_t", "label": "Text Color", "default": "#444444" },
+    { "type": "color", "id": "c_btn_bg", "label": "Button Background", "default": "#000000" },
+    { "type": "color", "id": "c_btn_t", "label": "Button Text", "default": "#ffffff" },
+    { "type": "header", "content": "Desktop Typography" },
+    { "type": "range", "id": "fs_sub_dt", "min": 10, "max": 40, "step": 1, "unit": "px", "label": "Subheading Size", "default": 14 },
+    { "type": "range", "id": "fs_h_dt", "min": 20, "max": 100, "step": 2, "unit": "px", "label": "Heading Size", "default": 48 },
+    { "type": "range", "id": "fs_t_dt", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Text Size", "default": 18 },
+    { "type": "range", "id": "mb_dt", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Margin Bottom", "default": 40 },
+    { "type": "header", "content": "Mobile Typography" },
+    { "type": "range", "id": "fs_sub_mb", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Subheading Size (Mobile)", "default": 12 },
+    { "type": "range", "id": "fs_h_mb", "min": 18, "max": 60, "step": 2, "unit": "px", "label": "Heading Size (Mobile)", "default": 32 },
+    { "type": "range", "id": "fs_t_mb", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Text Size (Mobile)", "default": 16 },
+    { "type": "range", "id": "mb_mb", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Margin Bottom (Mobile)", "default": 32 }
   ],
   "presets": [{ "name": "CX Rich Text" }]
 }
