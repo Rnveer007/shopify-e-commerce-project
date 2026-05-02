@@ -1,9 +1,16 @@
 <div class="cx-rt-wrapper cx-rt-{{ block.id }}" style="
-  {% if block.settings.bg_color.alpha != 0 %}
-    --bg-color: {{ block.settings.bg_color | color_modify: 'alpha', block.settings.bg_opacity }};
+  {% if block.settings.main_bg_image != blank %}
+    --bg-img: url('{{ block.settings.main_bg_image | image_url: width: 2000 }}');
   {% else %}
-    --bg-color: transparent;
+    --bg-img: none;
   {% endif %}
+  
+  {% if block.settings.bg_color.alpha != 0 %}
+    --bg-color-overlay: {{ block.settings.bg_color | color_modify: 'alpha', block.settings.bg_opacity }};
+  {% else %}
+    --bg-color-overlay: transparent;
+  {% endif %}
+
   --pt-desktop: {{ block.settings.main_pt_desktop }}px;
   --pb-desktop: {{ block.settings.main_pb_desktop }}px;
   --pl-desktop: {{ block.settings.main_pl_desktop }}px;
@@ -19,6 +26,9 @@
   --bw-main: {{ block.settings.main_bw }}px;
   --bc-main: {{ block.settings.main_bc }};
 ">
+  
+  <div class="cx-rt-overlay"></div>
+
   <div class="cx-rt-content">
     {% if block.settings.subheading != blank %}<p class="cx-el-sub" style="--c: {{ block.settings.c_sub }}; --fs-desktop: {{ block.settings.fs_sub_desktop }}px; --fs-mobile: {{ block.settings.fs_sub_mobile }}px; --lh: {{ block.settings.lh_sub }}; --mt: {{ block.settings.mt_sub }}px; --mb: {{ block.settings.mb_sub }}px; --bg: {{ block.settings.bg_sub }}; --bw: {{ block.settings.bw_sub }}px; --bc: {{ block.settings.bc_sub }};">{{ block.settings.subheading }}</p>{% endif %}
     {% if block.settings.title != blank %}<h2 class="cx-el-h" style="--c: {{ block.settings.c_h }}; --fs-desktop: {{ block.settings.fs_h_desktop }}px; --fs-mobile: {{ block.settings.fs_h_mobile }}px; --lh: {{ block.settings.lh_h }}; --mt: {{ block.settings.mt_h }}px; --mb: {{ block.settings.mb_h }}px; --bg: {{ block.settings.bg_h }}; --bw: {{ block.settings.bw_h }}px; --bc: {{ block.settings.bc_h }};">{{ block.settings.title }}</h2>{% endif %}
@@ -28,11 +38,40 @@
 </div>
 
 <style>
-  .cx-rt-{{ block.id }} { background-color: var(--bg-color) !important; text-align: var(--align) !important; border-radius: var(--radius) !important; border: var(--bw-main) solid var(--bc-main) !important; padding: var(--pt-desktop) var(--pr-desktop) var(--pb-desktop) var(--pl-desktop) !important; margin: var(--mt-desktop) 0 var(--mb-desktop) 0 !important; width: 100% !important; box-sizing: border-box !important; display: block !important; }
+  .cx-rt-{{ block.id }} { 
+    position: relative;
+    background-image: var(--bg-img) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    text-align: var(--align) !important; 
+    border-radius: var(--radius) !important; 
+    border: var(--bw-main) solid var(--bc-main) !important; 
+    padding: var(--pt-desktop) var(--pr-desktop) var(--pb-desktop) var(--pl-desktop) !important; 
+    margin: var(--mt-desktop) 0 var(--mb-desktop) 0 !important; 
+    width: 100% !important; 
+    box-sizing: border-box !important; 
+    display: block !important; 
+    overflow: hidden;
+  }
+
+  .cx-rt-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--bg-color-overlay) !important;
+    z-index: 1;
+  }
+
+  .cx-rt-content { position: relative; z-index: 2; }
+
   .cx-el-sub, .cx-el-h, .cx-el-p, .cx-el-p p { display: block !important; padding: 0 !important; margin: 0 !important; }
   .cx-el-sub, .cx-el-h, .cx-el-p { margin-top: var(--mt) !important; margin-bottom: var(--mb) !important; color: var(--c) !important; background-color: var(--bg) !important; border: var(--bw) solid var(--bc) !important; font-size: var(--fs-desktop) !important; line-height: var(--lh) !important; box-sizing: border-box !important; }
-  .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; }
-  @media (max-width: 768px) { .cx-rt-{{ block.id }} { padding: var(--pt-mobile) var(--pr-mobile) var(--pb-mobile) var(--pl-mobile) !important; } }
+  .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; transition: transform 0.2s; }
+  .cx-el-btn:hover { transform: scale(1.05); }
+
+  @media (max-width: 768px) { 
+    .cx-rt-{{ block.id }} { padding: var(--pt-mobile) var(--pr-mobile) var(--pb-mobile) var(--pl-mobile) !important; } 
+    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mobile) !important; }
+  }
 </style>
 
 {% schema %}
@@ -41,24 +80,29 @@
   "settings": [
     { "type": "header", "content": "MAIN BOX SETTINGS" },
     { "type": "select", "id": "main_align", "label": "Text Alignment", "options": [{"value":"left","label":"Left Alignment"},{"value":"center","label":"Center Alignment"},{"value":"right","label":"Right Alignment"}], "default": "center" },
-    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "rgba(0,0,0,0)" },
-    { "type": "range", "id": "bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Background Opacity", "default": 0 },
+    { "type": "image_picker", "id": "main_bg_image", "label": "Background Image" },
+    { "type": "color", "id": "bg_color", "label": "BG Overlay Color", "default": "rgba(0,0,0,0)" },
+    { "type": "range", "id": "bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Overlay Opacity", "default": 0 },
     { "type": "range", "id": "main_radius", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Corner Radius", "default": 0 },
     { "type": "range", "id": "main_bw", "min": 0, "max": 10, "step": 1, "label": "Main Border Width", "default": 0 },
     { "type": "color", "id": "main_bc", "label": "Main Border Color", "default": "#000000" },
+    
     { "type": "header", "content": "BOX PADDING - DESKTOP" },
     { "type": "range", "id": "main_pt_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Top", "default": 20 },
     { "type": "range", "id": "main_pb_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 20 },
-    { "type": "range", "id": "main_pl_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
-    { "type": "range", "id": "main_pr_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
+    { "type": "range", "id": "main_pl_desktop", "min": 0, "max": 400, "step": 5, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "main_pr_desktop", "min": 0, "max": 400, "step": 5, "unit": "px", "label": "Padding Right", "default": 20 },
+    
     { "type": "header", "content": "BOX PADDING - MOBILE" },
     { "type": "range", "id": "main_pt_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Top Mobile", "default": 15 },
     { "type": "range", "id": "main_pb_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Bottom Mobile", "default": 15 },
     { "type": "range", "id": "main_pl_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Left Mobile", "default": 15 },
     { "type": "range", "id": "main_pr_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Right Mobile", "default": 15 },
+
     { "type": "header", "content": "MARGIN - DESKTOP" },
     { "type": "range", "id": "main_mt_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Top Desktop", "default": 0 },
     { "type": "range", "id": "main_mb_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Bottom Desktop", "default": 0 },
+
     { "type": "header", "content": "1. SUBHEADING" },
     { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
     { "type": "color", "id": "c_sub", "label": "Color", "default": "#EB1A1A" },
@@ -70,6 +114,7 @@
     { "type": "text", "id": "lh_sub", "label": "Line Height", "default": "1.2" },
     { "type": "range", "id": "mt_sub", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_sub", "min": 0, "max": 50, "label": "Margin Bottom", "default": 10 },
+
     { "type": "header", "content": "2. HEADING" },
     { "type": "text", "id": "title", "label": "Text", "default": "Main Heading" },
     { "type": "color", "id": "c_h", "label": "Color", "default": "#000" },
@@ -81,6 +126,7 @@
     { "type": "text", "id": "lh_h", "label": "Line Height", "default": "1.1" },
     { "type": "range", "id": "mt_h", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_h", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
+
     { "type": "header", "content": "3. PARAGRAPH" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Professional description for your brand.</p>" },
     { "type": "color", "id": "c_p", "label": "Color", "default": "#333" },
@@ -92,6 +138,7 @@
     { "type": "text", "id": "lh_p", "label": "Line Height", "default": "1.6" },
     { "type": "range", "id": "mt_p", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_p", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
+
     { "type": "header", "content": "4. BUTTON" },
     { "type": "text", "id": "btn_label", "label": "Label", "default": "Shop Now" },
     { "type": "url", "id": "btn_link", "label": "Link" },
