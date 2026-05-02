@@ -1,5 +1,5 @@
 {%- comment -%}
-  CX Container - Updated with Fixed Padding & Step-based Margins
+  CX Container - Updated to allow Custom Blocks
 {%- endcomment -%}
 
 <section id="cx-section-{{ section.id }}" 
@@ -29,29 +29,23 @@
   
   .cx-wrapper {
     margin: 0 auto;
-    transition: max-width 0.4s ease-in-out;
   }
 
-  /* Default Padding 15px all sides */
   .cx-inner-content {
     padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Logic to remove padding */
   @media (min-width: 769px) {
-    .remove-pd-desktop .cx-inner-content {
-      padding: 0;
-    }
+    .remove-pd-desktop .cx-inner-content { padding: 0; }
+    .cx-width-default { max-width: 1440px; }
+    .cx-width-expanded { max-width: 100%; } /* True Full Width */
   }
 
   @media (max-width: 768px) {
-    .remove-pd-mobile .cx-inner-content {
-      padding: 0;
-    }
+    .remove-pd-mobile .cx-inner-content { padding: 0; }
   }
-
-  .cx-width-default { max-width: 1440px; }
-  .cx-width-expanded { max-width: 1920px; }
 </style>
 
 {% schema %}
@@ -59,57 +53,23 @@
   "name": "CX Container",
   "tag": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Container Width"
-    },
-    {
-      "type": "checkbox",
-      "id": "no_gutter",
-      "label": "No Gutter (1920px)",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Padding Controls (Default 15px)"
-    },
-    {
-      "type": "checkbox",
-      "id": "remove_padding_desktop",
-      "label": "Remove Padding - Desktop",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "remove_padding_mobile",
-      "label": "Remove Padding - Mobile",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "select",
-      "id": "margin_bottom",
-      "label": "Margin Bottom",
-      "options": [
+    { "type": "header", "content": "Container Width" },
+    { "type": "checkbox", "id": "no_gutter", "label": "Full Width (100%)", "default": false },
+    { "type": "header", "content": "Padding Controls" },
+    { "type": "checkbox", "id": "remove_padding_desktop", "label": "Remove Padding - Desktop", "default": false },
+    { "type": "checkbox", "id": "remove_padding_mobile", "label": "Remove Padding - Mobile", "default": false },
+    { "type": "header", "content": "Spacing & Background" },
+    { "type": "select", "id": "margin_bottom", "label": "Margin Bottom", "options": [
         { "value": "0px", "label": "None" },
         { "value": "20px", "label": "Small" },
         { "value": "40px", "label": "Medium" },
-        { "value": "60px", "label": "Large" },
-        { "value": "80px", "label": "Larger" }
-      ],
-      "default": "40px"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "transparent"
-    }
+        { "value": "60px", "label": "Large" }
+      ], "default": "40px" },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" }
   ],
   "blocks": [
+    { "type": "cx-rich-text-pro" },
+    { "type": "cx-media-card" },
     { "type": "@theme" },
     { "type": "@app" }
   ],

@@ -1,76 +1,45 @@
 <div class="cx-rt-wrapper cx-rt-{{ block.id }}" style="
-  {% if block.settings.main_bg_image != blank %}
-    --bg-img: url('{{ block.settings.main_bg_image | image_url: width: 2000 }}');
+  {% if block.settings.box_bg_image != blank %}
+    --bg-img: url('{{ block.settings.box_bg_image | image_url: width: 2000 }}');
   {% else %}
     --bg-img: none;
   {% endif %}
-  
-  {% if block.settings.bg_color.alpha != 0 %}
-    --bg-color-overlay: {{ block.settings.bg_color | color_modify: 'alpha', block.settings.bg_opacity }};
-  {% else %}
-    --bg-color-overlay: transparent;
-  {% endif %}
-
-  --pt-desktop: {{ block.settings.main_pt_desktop }}px;
-  --pb-desktop: {{ block.settings.main_pb_desktop }}px;
-  --pl-desktop: {{ block.settings.main_pl_desktop }}px;
-  --pr-desktop: {{ block.settings.main_pr_desktop }}px;
-  --pt-mobile: {{ block.settings.main_pt_mobile }}px;
-  --pb-mobile: {{ block.settings.main_pb_mobile }}px;
-  --pl-mobile: {{ block.settings.main_pl_mobile }}px;
-  --pr-mobile: {{ block.settings.main_pr_mobile }}px;
-  --mt-desktop: {{ block.settings.main_mt_desktop }}px;
-  --mb-desktop: {{ block.settings.main_mb_desktop }}px;
-  --radius: {{ block.settings.main_radius }}px;
-  --align: {{ block.settings.main_align }};
-  --bw-main: {{ block.settings.main_bw }}px;
-  --bc-main: {{ block.settings.main_bc }};
+  --overlay: {{ block.settings.box_bg_color | color_modify: 'alpha', block.settings.box_bg_opacity }};
+  --radius: {{ block.settings.box_radius }}px;
+  --bw-main: {{ block.settings.box_bw }}px;
+  --bc-main: {{ block.settings.box_bc }};
+  --align: {{ block.settings.box_align }};
+  /* Desktop Spacing */
+  --pt-dt: {{ block.settings.box_pt_dt }}px;
+  --pb-dt: {{ block.settings.box_pb_dt }}px;
+  --pl-dt: {{ block.settings.box_pl_dt }}px;
+  --pr-dt: {{ block.settings.box_pr_dt }}px;
+  --mt-dt: {{ block.settings.box_mt_dt }}px;
+  --mb-dt: {{ block.settings.box_mb_dt }}px;
+  /* Mobile Spacing */
+  --pt-mb: {{ block.settings.box_pt_mb }}px;
+  --pb-mb: {{ block.settings.box_pb_mb }}px;
+  --pl-mb: {{ block.settings.box_pl_mb }}px;
+  --pr-mb: {{ block.settings.box_pr_mobile }}px;
 ">
-  
   <div class="cx-rt-overlay"></div>
-
   <div class="cx-rt-content">
-    {% if block.settings.subheading != blank %}<p class="cx-el-sub" style="--c: {{ block.settings.c_sub }}; --fs-desktop: {{ block.settings.fs_sub_desktop }}px; --fs-mobile: {{ block.settings.fs_sub_mobile }}px; --lh: {{ block.settings.lh_sub }}; --mt: {{ block.settings.mt_sub }}px; --mb: {{ block.settings.mb_sub }}px; --bg: {{ block.settings.bg_sub }}; --bw: {{ block.settings.bw_sub }}px; --bc: {{ block.settings.bc_sub }};">{{ block.settings.subheading }}</p>{% endif %}
-    {% if block.settings.title != blank %}<h2 class="cx-el-h" style="--c: {{ block.settings.c_h }}; --fs-desktop: {{ block.settings.fs_h_desktop }}px; --fs-mobile: {{ block.settings.fs_h_mobile }}px; --lh: {{ block.settings.lh_h }}; --mt: {{ block.settings.mt_h }}px; --mb: {{ block.settings.mb_h }}px; --bg: {{ block.settings.bg_h }}; --bw: {{ block.settings.bw_h }}px; --bc: {{ block.settings.bc_h }};">{{ block.settings.title }}</h2>{% endif %}
-    {% if block.settings.text != blank %}<div class="cx-el-p" style="--c: {{ block.settings.c_p }}; --fs-desktop: {{ block.settings.fs_p_desktop }}px; --fs-mobile: {{ block.settings.fs_p_mobile }}px; --lh: {{ block.settings.lh_p }}; --mt: {{ block.settings.mt_p }}px; --mb: {{ block.settings.mb_p }}px; --bg: {{ block.settings.bg_p }}; --bw: {{ block.settings.bw_p }}px; --bc: {{ block.settings.bc_p }};">{{ block.settings.text }}</div>{% endif %}
+    {% if block.settings.subheading != blank %}<p class="cx-el-sub" style="--c: {{ block.settings.c_sub }}; --fs-dt: {{ block.settings.fs_sub_dt }}px; --fs-mb: {{ block.settings.fs_sub_mb }}px; --mt: {{ block.settings.mt_sub }}px; --mb: {{ block.settings.mb_sub }}px; --bg: {{ block.settings.bg_sub }}; --bw: {{ block.settings.bw_sub }}px; --bc: {{ block.settings.bc_sub }};">{{ block.settings.subheading }}</p>{% endif %}
+    {% if block.settings.title != blank %}<h2 class="cx-el-h" style="--c: {{ block.settings.c_h }}; --fs-dt: {{ block.settings.fs_h_dt }}px; --fs-mb: {{ block.settings.fs_h_mb }}px; --mt: {{ block.settings.mt_h }}px; --mb: {{ block.settings.mb_h }}px; --bg: {{ block.settings.bg_h }}; --bw: {{ block.settings.bw_h }}px; --bc: {{ block.settings.bc_h }};">{{ block.settings.title }}</h2>{% endif %}
+    {% if block.settings.text != blank %}<div class="cx-el-p" style="--c: {{ block.settings.c_p }}; --fs-dt: {{ block.settings.fs_p_dt }}px; --fs-mb: {{ block.settings.fs_p_mb }}px; --mt: {{ block.settings.mt_p }}px; --mb: {{ block.settings.mb_p }}px; --bg: {{ block.settings.bg_p }}; --bw: {{ block.settings.bw_p }}px; --bc: {{ block.settings.bc_p }};">{{ block.settings.text }}</div>{% endif %}
     {% if block.settings.btn_label != blank %}<div class="cx-btn-wrap" style="--mt: {{ block.settings.mt_btn }}px; --mb: {{ block.settings.mb_btn }}px;"><a href="{{ block.settings.btn_link }}" class="cx-el-btn" style="background: {{ block.settings.bg_btn }}; color: {{ block.settings.c_btn }}; font-size: {{ block.settings.fs_btn }}px; border: {{ block.settings.bw_btn }}px solid {{ block.settings.bc_btn }};">{{ block.settings.btn_label }}</a></div>{% endif %}
   </div>
 </div>
 
 <style>
-  .cx-rt-{{ block.id }} { 
-    position: relative;
-    background-image: var(--bg-img) !important;
-    background-size: cover !important;
-    background-position: center !important;
-    text-align: var(--align) !important; 
-    border-radius: var(--radius) !important; 
-    border: var(--bw-main) solid var(--bc-main) !important; 
-    padding: var(--pt-desktop) var(--pr-desktop) var(--pb-desktop) var(--pl-desktop) !important; 
-    margin: var(--mt-desktop) 0 var(--mb-desktop) 0 !important; 
-    width: 100% !important; 
-    box-sizing: border-box !important; 
-    display: block !important; 
-    overflow: hidden;
-  }
-
-  .cx-rt-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: var(--bg-color-overlay) !important;
-    z-index: 1;
-  }
-
+  .cx-rt-{{ block.id }} { position: relative; background-image: var(--bg-img); background-size: cover; background-position: center; text-align: var(--align); border-radius: var(--radius); border: var(--bw-main) solid var(--bc-main); padding: var(--pt-dt) var(--pr-dt) var(--pb-dt) var(--pl-dt) !important; margin: var(--mt-dt) 0 var(--mb-dt) 0 !important; overflow: hidden; }
+  .cx-rt-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: var(--overlay); z-index:1; }
   .cx-rt-content { position: relative; z-index: 2; }
-
-  .cx-el-sub, .cx-el-h, .cx-el-p, .cx-el-p p { display: block !important; padding: 0 !important; margin: 0 !important; }
-  .cx-el-sub, .cx-el-h, .cx-el-p { margin-top: var(--mt) !important; margin-bottom: var(--mb) !important; color: var(--c) !important; background-color: var(--bg) !important; border: var(--bw) solid var(--bc) !important; font-size: var(--fs-desktop) !important; line-height: var(--lh) !important; box-sizing: border-box !important; }
-  .cx-el-btn { display: inline-block !important; padding: 12px 30px !important; text-decoration: none !important; border-radius: 4px !important; font-weight: bold !important; transition: transform 0.2s; }
-  .cx-el-btn:hover { transform: scale(1.05); }
-
-  @media (max-width: 768px) { 
-    .cx-rt-{{ block.id }} { padding: var(--pt-mobile) var(--pr-mobile) var(--pb-mobile) var(--pl-mobile) !important; } 
-    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mobile) !important; }
+  .cx-el-sub, .cx-el-h, .cx-el-p, .cx-el-p p { margin: 0; padding: 0; }
+  .cx-el-sub, .cx-el-h, .cx-el-p { margin-top: var(--mt) !important; margin-bottom: var(--mb) !important; color: var(--c); background: var(--bg); border: var(--bw) solid var(--bc); font-size: var(--fs-dt) !important; }
+  @media (max-width: 768px) {
+    .cx-rt-{{ block.id }} { padding: var(--pt-mb) var(--pr-mb) var(--pb-mb) var(--pl-mb) !important; }
+    .cx-el-sub, .cx-el-h, .cx-el-p { font-size: var(--fs-mb) !important; }
   }
 </style>
 
@@ -79,72 +48,62 @@
   "name": "CX Rich Text Pro",
   "settings": [
     { "type": "header", "content": "MAIN BOX SETTINGS" },
-    { "type": "select", "id": "main_align", "label": "Text Alignment", "options": [{"value":"left","label":"Left Alignment"},{"value":"center","label":"Center Alignment"},{"value":"right","label":"Right Alignment"}], "default": "center" },
-    { "type": "image_picker", "id": "main_bg_image", "label": "Background Image" },
-    { "type": "color", "id": "bg_color", "label": "BG Overlay Color", "default": "rgba(0,0,0,0)" },
-    { "type": "range", "id": "bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Overlay Opacity", "default": 0 },
-    { "type": "range", "id": "main_radius", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Corner Radius", "default": 0 },
-    { "type": "range", "id": "main_bw", "min": 0, "max": 10, "step": 1, "label": "Main Border Width", "default": 0 },
-    { "type": "color", "id": "main_bc", "label": "Main Border Color", "default": "#000000" },
-    
-    { "type": "header", "content": "BOX PADDING - DESKTOP" },
-    { "type": "range", "id": "main_pt_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Top", "default": 20 },
-    { "type": "range", "id": "main_pb_desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 20 },
-    { "type": "range", "id": "main_pl_desktop", "min": 0, "max": 400, "step": 5, "unit": "px", "label": "Padding Left", "default": 20 },
-    { "type": "range", "id": "main_pr_desktop", "min": 0, "max": 400, "step": 5, "unit": "px", "label": "Padding Right", "default": 20 },
-    
-    { "type": "header", "content": "BOX PADDING - MOBILE" },
-    { "type": "range", "id": "main_pt_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Top Mobile", "default": 15 },
-    { "type": "range", "id": "main_pb_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Bottom Mobile", "default": 15 },
-    { "type": "range", "id": "main_pl_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Left Mobile", "default": 15 },
-    { "type": "range", "id": "main_pr_mobile", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Padding Right Mobile", "default": 15 },
-
-    { "type": "header", "content": "MARGIN - DESKTOP" },
-    { "type": "range", "id": "main_mt_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Top Desktop", "default": 0 },
-    { "type": "range", "id": "main_mb_desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Margin Bottom Desktop", "default": 0 },
-
+    { "type": "select", "id": "box_align", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "image_picker", "id": "box_bg_image", "label": "Background Image" },
+    { "type": "color", "id": "box_bg_color", "label": "Overlay Color", "default": "rgba(0,0,0,0)" },
+    { "type": "range", "id": "box_bg_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Overlay Opacity", "default": 0 },
+    { "type": "range", "id": "box_radius", "min": 0, "max": 100, "step": 2, "label": "Corner Radius", "default": 0 },
+    { "type": "range", "id": "box_bw", "min": 0, "max": 10, "label": "Border Width", "default": 0 },
+    { "type": "color", "id": "box_bc", "label": "Border Color", "default": "#000" },
+    { "type": "header", "content": "DESKTOP PADDING" },
+    { "type": "range", "id": "box_pt_dt", "min": 0, "max": 200, "label": "Padding Top", "default": 20 },
+    { "type": "range", "id": "box_pb_dt", "min": 0, "max": 200, "label": "Padding Bottom", "default": 20 },
+    { "type": "range", "id": "box_pl_dt", "min": 0, "max": 200, "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "box_pr_dt", "min": 0, "max": 200, "label": "Padding Right", "default": 20 },
+    { "type": "header", "content": "MOBILE PADDING" },
+    { "type": "range", "id": "box_pt_mb", "min": 0, "max": 100, "label": "Padding Top Mobile", "default": 10 },
+    { "type": "range", "id": "box_pb_mb", "min": 0, "max": 100, "label": "Padding Bottom Mobile", "default": 10 },
+    { "type": "range", "id": "box_pl_mb", "min": 0, "max": 100, "label": "Padding Left Mobile", "default": 10 },
+    { "type": "range", "id": "box_pr_mobile", "min": 0, "max": 100, "label": "Padding Right Mobile", "default": 10 },
+    { "type": "header", "content": "BOX MARGIN" },
+    { "type": "range", "id": "box_mt_dt", "min": 0, "max": 100, "label": "Margin Top Desktop", "default": 0 },
+    { "type": "range", "id": "box_mb_dt", "min": 0, "max": 100, "label": "Margin Bottom Desktop", "default": 0 },
     { "type": "header", "content": "1. SUBHEADING" },
     { "type": "text", "id": "subheading", "label": "Text", "default": "Subheading" },
     { "type": "color", "id": "c_sub", "label": "Color", "default": "#EB1A1A" },
     { "type": "color", "id": "bg_sub", "label": "BG Color", "default": "rgba(0,0,0,0)" },
-    { "type": "range", "id": "bw_sub", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
+    { "type": "range", "id": "bw_sub", "min": 0, "max": 10, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_sub", "label": "Border Color", "default": "#000" },
-    { "type": "number", "id": "fs_sub_desktop", "label": "Font Size Desktop", "default": 32 },
-    { "type": "number", "id": "fs_sub_mobile", "label": "Font Size Mobile", "default": 12 },
-    { "type": "text", "id": "lh_sub", "label": "Line Height", "default": "1.2" },
+    { "type": "number", "id": "fs_sub_dt", "label": "Font DT", "default": 16 },
+    { "type": "number", "id": "fs_sub_mb", "label": "Font MB", "default": 14 },
     { "type": "range", "id": "mt_sub", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_sub", "min": 0, "max": 50, "label": "Margin Bottom", "default": 10 },
-
     { "type": "header", "content": "2. HEADING" },
     { "type": "text", "id": "title", "label": "Text", "default": "Main Heading" },
     { "type": "color", "id": "c_h", "label": "Color", "default": "#000" },
     { "type": "color", "id": "bg_h", "label": "BG Color", "default": "rgba(0,0,0,0)" },
-    { "type": "range", "id": "bw_h", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
+    { "type": "range", "id": "bw_h", "min": 0, "max": 10, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_h", "label": "Border Color", "default": "#000" },
-    { "type": "number", "id": "fs_h_desktop", "label": "Font Size Desktop", "default": 40 },
-    { "type": "number", "id": "fs_h_mobile", "label": "Font Size Mobile", "default": 30 },
-    { "type": "text", "id": "lh_h", "label": "Line Height", "default": "1.1" },
+    { "type": "number", "id": "fs_h_dt", "label": "Font DT", "default": 40 },
+    { "type": "number", "id": "fs_h_mb", "label": "Font MB", "default": 30 },
     { "type": "range", "id": "mt_h", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_h", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
-
     { "type": "header", "content": "3. PARAGRAPH" },
-    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Professional description for your brand.</p>" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Professional description.</p>" },
     { "type": "color", "id": "c_p", "label": "Color", "default": "#333" },
     { "type": "color", "id": "bg_p", "label": "BG Color", "default": "rgba(0,0,0,0)" },
-    { "type": "range", "id": "bw_p", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
+    { "type": "range", "id": "bw_p", "min": 0, "max": 10, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_p", "label": "Border Color", "default": "#000" },
-    { "type": "number", "id": "fs_p_desktop", "label": "Font Size Desktop", "default": 18 },
-    { "type": "number", "id": "fs_p_mobile", "label": "Font Size Mobile", "default": 16 },
-    { "type": "text", "id": "lh_p", "label": "Line Height", "default": "1.6" },
+    { "type": "number", "id": "fs_p_dt", "label": "Font DT", "default": 18 },
+    { "type": "number", "id": "fs_p_mb", "label": "Font MB", "default": 16 },
     { "type": "range", "id": "mt_p", "min": 0, "max": 50, "label": "Margin Top", "default": 0 },
     { "type": "range", "id": "mb_p", "min": 0, "max": 50, "label": "Margin Bottom", "default": 20 },
-
     { "type": "header", "content": "4. BUTTON" },
     { "type": "text", "id": "btn_label", "label": "Label", "default": "Shop Now" },
     { "type": "url", "id": "btn_link", "label": "Link" },
-    { "type": "color", "id": "bg_btn", "label": "BG Color", "default": "#000" },
-    { "type": "color", "id": "c_btn", "label": "Text Color", "default": "#fff" },
-    { "type": "range", "id": "bw_btn", "min": 0, "max": 10, "step": 1, "label": "Border Width", "default": 0 },
+    { "type": "color", "id": "bg_btn", "label": "BG", "default": "#000" },
+    { "type": "color", "id": "c_btn", "label": "Text", "default": "#fff" },
+    { "type": "range", "id": "bw_btn", "min": 0, "max": 10, "label": "Border Width", "default": 0 },
     { "type": "color", "id": "bc_btn", "label": "Border Color", "default": "rgba(0,0,0,0)" },
     { "type": "number", "id": "fs_btn", "label": "Font Size", "default": 16 },
     { "type": "range", "id": "mt_btn", "min": 0, "max": 50, "label": "Margin Top", "default": 10 },
