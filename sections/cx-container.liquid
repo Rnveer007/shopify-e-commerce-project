@@ -1,80 +1,52 @@
-{%- comment -%}
-  CX Container - Updated to allow Custom Blocks
-{%- endcomment -%}
+{%- comment -%} CX Container - Base for all CX Blocks {%- endcomment -%}
 
 <section id="cx-section-{{ section.id }}" 
-  class="cx-main-parent 
-    {% if section.settings.remove_padding_desktop %} remove-pd-desktop {% endif %} 
-    {% if section.settings.remove_padding_mobile %} remove-pd-mobile {% endif %}" 
-  style="
-    --mb: {{ section.settings.margin_bottom }};
-    --bg-color: {{ section.settings.bg_color }};
-  ">
+  class="cx-main-parent {% if section.settings.no_pd_dt %} no-pd-dt {% endif %} {% if section.settings.no_pd_mb %} no-pd-mb {% endif %}" 
+  style="--mb: {{ section.settings.margin_bottom }}; --bg: {{ section.settings.bg_color }};">
   
-  <div class="cx-wrapper {% if section.settings.no_gutter %}cx-width-expanded{% else %}cx-width-default{% endif %}">
-    <div class="cx-inner-content">
+  <div class="cx-wrapper {% if section.settings.full_width %}cx-expanded{% else %}cx-default{% endif %}">
+    <div class="cx-inner">
       {% content_for 'blocks' %}
     </div>
   </div>
-
 </section>
 
 <style>
-  .cx-main-parent {
-    background-color: var(--bg-color);
-    margin-bottom: var(--mb);
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .cx-wrapper {
-    margin: 0 auto;
-  }
-
-  .cx-inner-content {
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
+  .cx-main-parent { background-color: var(--bg); margin-bottom: var(--mb); width: 100%; overflow: hidden; }
+  .cx-wrapper { margin: 0 auto; }
+  .cx-inner { padding: 15px; width: 100%; box-sizing: border-box; }
   @media (min-width: 769px) {
-    .remove-pd-desktop .cx-inner-content { padding: 0; }
-    .cx-width-default { max-width: 1440px; }
-    .cx-width-expanded { max-width: 100%; } /* True Full Width */
+    .no-pd-dt .cx-inner { padding: 0; }
+    .cx-default { max-width: 1440px; }
+    .cx-expanded { max-width: 100%; }
   }
-
   @media (max-width: 768px) {
-    .remove-pd-mobile .cx-inner-content { padding: 0; }
+    .no-pd-mb .cx-inner { padding: 0; }
   }
 </style>
 
 {% schema %}
 {
   "name": "CX Container",
-  "tag": "section",
   "settings": [
-    { "type": "header", "content": "Container Width" },
-    { "type": "checkbox", "id": "no_gutter", "label": "Full Width (100%)", "default": false },
-    { "type": "header", "content": "Padding Controls" },
-    { "type": "checkbox", "id": "remove_padding_desktop", "label": "Remove Padding - Desktop", "default": false },
-    { "type": "checkbox", "id": "remove_padding_mobile", "label": "Remove Padding - Mobile", "default": false },
-    { "type": "header", "content": "Spacing & Background" },
+    { "type": "header", "content": "Layout" },
+    { "type": "checkbox", "id": "full_width", "label": "Full Width (100%)", "default": false },
+    { "type": "checkbox", "id": "no_pd_dt", "label": "Remove Desktop Padding", "default": false },
+    { "type": "checkbox", "id": "no_pd_mb", "label": "Remove Mobile Padding", "default": false },
+    { "type": "header", "content": "Spacing & Color" },
     { "type": "select", "id": "margin_bottom", "label": "Margin Bottom", "options": [
         { "value": "0px", "label": "None" },
-        { "value": "20px", "label": "Small" },
         { "value": "40px", "label": "Medium" },
-        { "value": "60px", "label": "Large" }
+        { "value": "80px", "label": "Large" }
       ], "default": "40px" },
     { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" }
   ],
   "blocks": [
-    { "type": "cx-rich-text-pro" },
+    { "type": "cx-rich-text" },
     { "type": "cx-media-card" },
     { "type": "@theme" },
     { "type": "@app" }
   ],
-  "presets": [
-    { "name": "CX Container" }
-  ]
+  "presets": [{ "name": "CX Container" }]
 }
 {% endschema %}

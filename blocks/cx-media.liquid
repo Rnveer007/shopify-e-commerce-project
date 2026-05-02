@@ -1,60 +1,62 @@
-<div class="cx-block-media cx-media-{{ block.id }}" style="margin-bottom: {{ block.settings.mb }};">
+<div class="cx-media-card cx-mc-{{ block.id }}" style="
+  {% if block.settings.bg_img != blank %}
+    --bg-img: url('{{ block.settings.bg_img | image_url: width: 2000 }}');
+  {% else %}
+    --bg-img: none;
+  {% endif %}
+  --overlay: {{ block.settings.overlay_color | color_modify: 'alpha', block.settings.overlay_opacity }};
+  --align: {{ block.settings.text_align }};
+  --radius: {{ block.settings.box_radius }}px;
+  /* Desktop Padding */
+  --pt-dt: {{ block.settings.pd_top_dt }}px;
+  --pb-dt: {{ block.settings.pd_bottom_dt }}px;
+  --pl-dt: {{ block.settings.pd_left_dt }}px;
+  --pr-dt: {{ block.settings.pd_right_dt }}px;
+  /* Mobile Padding */
+  --pt-mb: {{ block.settings.pd_top_mb }}px;
+  --pb-mb: {{ block.settings.pd_bottom_mb }}px;
+  --pl-mb: {{ block.settings.pd_left_mb }}px;
+  --pr-mb: {{ block.settings.pd_right_mb }}px;
+">
+  <div class="cx-mc-overlay"></div>
   
-  <div class="cx-media-inner" style="border-radius: {{ block.settings.radius }}px;">
-    {%- comment -%} Check if Link exists {%- endcomment -%}
-    {% if block.settings.image_link != blank %}
-      <a href="{{ block.settings.image_link }}" class="cx-media-card-link">
+  <div class="cx-mc-content">
+    {% if block.settings.image != blank %}
+      <div class="cx-mc-media-wrap" style="margin-bottom: 20px;">
+        {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'cx-mc-img' }}
+      </div>
     {% endif %}
 
-    {% if block.settings.image_desktop != blank %}
-      <picture>
-        {% if block.settings.image_mobile != blank %}
-          <source media="(max-width: 767px)" srcset="{{ block.settings.image_mobile | image_url: width: 800 }}">
-        {% endif %}
-        <img 
-          src="{{ block.settings.image_desktop | image_url: width: 2000 }}" 
-          alt="{{ block.settings.image_desktop.alt | escape }}"
-          loading="lazy"
-          class="cx-media-img"
-        >
-      </picture>
-    {% else %}
-      {{ 'lifestyle-2' | placeholder_svg_tag: 'cx-placeholder' }}
+    {% if block.settings.title != blank %}
+      <h3 class="cx-mc-title" style="color: {{ block.settings.color_h }}; font-size: {{ block.settings.fs_h_dt }}px;">
+        {{ block.settings.title }}
+      </h3>
     {% endif %}
 
-    {% if block.settings.image_link != blank %}
-      </a>
+    {% if block.settings.text != blank %}
+      <div class="cx-mc-para" style="color: {{ block.settings.color_p }};">
+        {{ block.settings.text }}
+      </div>
     {% endif %}
   </div>
-
 </div>
 
 <style>
-  .cx-media-{{ block.id }} .cx-media-inner {
-    overflow: hidden;
-    width: 100%;
-    line-height: 0;
+  .cx-media-card { 
+    position: relative; background-image: var(--bg-img); background-size: cover; background-position: center;
+    text-align: var(--align); overflow: hidden; border-radius: var(--radius);
+    padding: var(--pt-dt) var(--pr-dt) var(--pb-dt) var(--pl-dt) !important;
+    height: 100%; box-sizing: border-box;
   }
-  .cx-media-card-link {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-  }
-  .cx-media-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.3s ease;
-  }
-  /* Optional: Halki si opacity change jab link par hover ho */
-  .cx-media-card-link:hover .cx-media-img {
-    opacity: 0.9;
-  }
-  .cx-placeholder { 
-    background: #eee; 
-    width: 100%; 
-    height: 300px; 
+  .cx-mc-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: var(--overlay); z-index:1; }
+  .cx-mc-content { position: relative; z-index: 2; }
+  .cx-mc-img { max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 8px; }
+  .cx-mc-title { margin: 0; line-height: 1.2; font-weight: bold; }
+  .cx-mc-para { margin-top: 10px; font-size: 16px; }
+
+  @media (max-width: 768px) {
+    .cx-media-card { padding: var(--pt-mb) var(--pr-mb) var(--pb-mb) var(--pl-mb) !important; }
+    .cx-mc-title { font-size: 24px !important; }
   }
 </style>
 
@@ -62,27 +64,27 @@
 {
   "name": "CX Media Card",
   "settings": [
-    { "type": "header", "content": "Media" },
-    { "type": "image_picker", "id": "image_desktop", "label": "Image (Desktop)" },
-    { "type": "image_picker", "id": "image_mobile", "label": "Image (Mobile)" },
-    { "type": "url", "id": "image_link", "label": "Image Link (Optional)" },
-    { "type": "header", "content": "Style" },
-    { "type": "range", "id": "radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner Roundness", "default": 12 },
-    {
-      "type": "select",
-      "id": "mb",
-      "label": "Margin Bottom",
-      "options": [
-        { "value": "0px", "label": "None" },
-        { "value": "20px", "label": "Small" },
-        { "value": "40px", "label": "Medium" },
-        { "value": "60px", "label": "Large" }
-      ],
-      "default": "20px"
-    }
-  ],
-  "presets": [
-    { "name": "CX Media Card" }
+    { "type": "header", "content": "Card Background" },
+    { "type": "image_picker", "id": "bg_img", "label": "Card Background Image" },
+    { "type": "color", "id": "overlay_color", "label": "Overlay Color", "default": "#000000" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 1, "step": 0.1, "label": "Overlay Opacity", "default": 0 },
+    { "type": "range", "id": "box_radius", "min": 0, "max": 50, "label": "Corner Radius", "default": 0 },
+    { "type": "select", "id": "text_align", "label": "Content Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "header", "content": "Desktop Padding" },
+    { "type": "range", "id": "pd_top_dt", "min": 0, "max": 150, "label": "Top", "default": 30 },
+    { "type": "range", "id": "pd_bottom_dt", "min": 0, "max": 150, "label": "Bottom", "default": 30 },
+    { "type": "range", "id": "pd_left_dt", "min": 0, "max": 150, "label": "Left", "default": 20 },
+    { "type": "range", "id": "pd_right_dt", "min": 0, "max": 150, "label": "Right", "default": 20 },
+    { "type": "header", "content": "Mobile Padding" },
+    { "type": "range", "id": "pd_top_mb", "min": 0, "max": 100, "label": "Top Mobile", "default": 20 },
+    { "type": "range", "id": "pd_bottom_mb", "min": 0, "max": 100, "label": "Bottom Mobile", "default": 20 },
+    { "type": "header", "content": "Media & Text" },
+    { "type": "image_picker", "id": "image", "label": "Foreground Image" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Media Card Title" },
+    { "type": "color", "id": "color_h", "label": "Heading Color", "default": "#000" },
+    { "type": "number", "id": "fs_h_dt", "label": "Heading Size Desktop", "default": 28 },
+    { "type": "richtext", "id": "text", "label": "Description" },
+    { "type": "color", "id": "color_p", "label": "Description Color", "default": "#333" }
   ]
 }
 {% endschema %}
