@@ -1,51 +1,20 @@
-{%- comment -%} CX Container - Base for all CX Blocks {%- endcomment -%}
-
-<section id="cx-section-{{ section.id }}" 
-  class="cx-main-parent {% if section.settings.no_pd_dt %} no-pd-dt {% endif %} {% if section.settings.no_pd_mb %} no-pd-mb {% endif %}" 
-  style="--mb: {{ section.settings.margin_bottom }}; --bg: {{ section.settings.bg_color }};">
-  
-  <div class="cx-wrapper {% if section.settings.full_width %}cx-expanded{% else %}cx-default{% endif %}">
-    <div class="cx-inner">
-      {% content_for 'blocks' %}
-    </div>
+<section class="cx-main-container" style="background: {{ section.settings.bg }}; margin-bottom: {{ section.settings.mb }};">
+  <div style="max-width: {% if section.settings.fw %}100%{% else %}1440px{% endif %}; margin: 0 auto; padding: 0 15px;">
+    {% content_for 'blocks' %}
   </div>
 </section>
-
-<style>
-  .cx-main-parent { background-color: var(--bg); margin-bottom: var(--mb); width: 100%; overflow: hidden; }
-  .cx-wrapper { margin: 0 auto; }
-  .cx-inner { padding: 15px; width: 100%; box-sizing: border-box; }
-  @media (min-width: 769px) {
-    .no-pd-dt .cx-inner { padding: 0; }
-    .cx-default { max-width: 1440px; }
-    .cx-expanded { max-width: 100%; }
-  }
-  @media (max-width: 768px) {
-    .no-pd-mb .cx-inner { padding: 0; }
-  }
-</style>
 
 {% schema %}
 {
   "name": "CX Container",
   "settings": [
-    { "type": "header", "content": "Layout" },
-    { "type": "checkbox", "id": "full_width", "label": "Full Width (100%)", "default": false },
-    { "type": "checkbox", "id": "no_pd_dt", "label": "Remove Desktop Padding", "default": false },
-    { "type": "checkbox", "id": "no_pd_mb", "label": "Remove Mobile Padding", "default": false },
-    { "type": "header", "content": "Spacing & Color" },
-    { "type": "select", "id": "margin_bottom", "label": "Margin Bottom", "options": [
-        { "value": "0px", "label": "None" },
-        { "value": "40px", "label": "Medium" },
-        { "value": "80px", "label": "Large" }
-      ], "default": "40px" },
-    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "transparent" }
+    { "type": "checkbox", "id": "fw", "label": "Full Width", "default": false },
+    { "type": "color", "id": "bg", "label": "Background", "default": "transparent" },
+    { "type": "text", "id": "mb", "label": "Margin Bottom", "default": "40px" }
   ],
   "blocks": [
     { "type": "cx-rich-text" },
-    { "type": "cx-media-card" },
-    { "type": "@theme" },
-    { "type": "@app" }
+    { "type": "cx-media-card" }
   ],
   "presets": [{ "name": "CX Container" }]
 }
